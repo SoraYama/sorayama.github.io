@@ -1,0 +1,34 @@
+body {
+  font-family: "Spectral";
+}
+
+@font-face {
+  font-family: web-font;
+  src: url("themes/default/assets/fonts/ftn45-webfont.woff2");
+}
+@font-face {
+  font-family: Spectral;
+  src: url("themes/default/assets/fonts/spectral-latin-400.woff2");
+}
+@font-face {
+  font-family: "Space Mono";
+  src: url("themes/default/assets/fonts/space-mono-latin-400.woff2");
+}
+
+h1.ui.header,
+h2.ui.header,
+h3.ui.header,
+h4.ui.header,
+h5.ui.header,
+h6.ui.header {
+  font-family: 'Futura PT', web-font, -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto',
+  'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+p {
+  font-family: 'Spectral','Georgia','Times New Roman','Times',serif !important;
+}
+
+code {
+  font-family: "Space Mono", "Courier New", monospace;
+}
