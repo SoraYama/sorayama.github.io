@@ -1,7 +1,9 @@
 body {
-  font-family: "Spectral";
+  background-image:
+    url(https://github.com/codebushi/gatsby-starter-stellar/blob/master/src/assets/images/overlay.png?raw=true),
+    linear-gradient(45deg,#191e30 15%, #725c3c 85%) !important;
+    color: #e0e0e0 !important;
 }
-
 @font-face {
   font-family: web-font;
   src: url("themes/default/assets/fonts/ftn45-webfont.woff2");
@@ -31,4 +33,18 @@ p {
 
 code {
   font-family: "Space Mono", "Courier New", monospace;
+}
+
+.dashed-bottom {
+  border-bottom: 1px dashed rgba(250, 250, 250, .30) !important;
+}
+.ui.card:hover,
+.ui.cards>.card:hover {
+  box-shadow:0 1px 3px 0 #D4D4D5,0 0 0 1px #D4D4D5;
+}
+.ui.vertical.menu.sidebar {
+  background-color: #191e30;
+}
+.ui.vertical.menu.sidebar .item::before {
+  background: rgba(250, 250, 250, .15);
 }

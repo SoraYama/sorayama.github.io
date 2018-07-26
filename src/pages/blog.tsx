@@ -21,6 +21,7 @@ interface BlogProps {
 }
 
 export default (props: BlogProps) => {
+  console.log("******", props);
   const tags = props.data.tags.group;
   const posts = props.data.posts.edges;
   const { pathname } = props.location;
@@ -47,7 +48,7 @@ export default (props: BlogProps) => {
                   {frontmatter.author.id}
                 </Comment.Author>
                 <Comment.Metadata style={{ margin: 0 }}>
-                  {frontmatter.updatedDate} - {timeToRead} min read
+                  更新于 {frontmatter.updatedDate} - 差不多要花 {timeToRead} 分钟阅读
               </Comment.Metadata>
               </Comment.Content>
             </Comment>

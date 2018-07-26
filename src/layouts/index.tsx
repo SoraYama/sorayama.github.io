@@ -33,13 +33,6 @@ export default class DefaultLayout extends React.PureComponent<DefaultLayoutProp
   render() {
     const { pathname } = this.props.location;
     const isHome = pathname === "/";
-    const footer = isHome ? "" : (
-      <Segment inverted vertical style={{ position: "absolute", bottom: 0, width: "100%" }}>
-        <Container textAlign="center">
-          <p>Powered with <Icon name="heart" /> by Gatsby 1.0</p>
-        </Container>
-      </Segment>
-    );
 
     return (
       <Provider store={store}>
@@ -59,9 +52,6 @@ export default class DefaultLayout extends React.PureComponent<DefaultLayoutProp
             <div style={{ paddingBottom: isHome ? "" : 60 }}>
               {this.props.children()}
             </div>
-
-            {/* Footer */}
-            {footer}
 
           </Sidebar.Pusher>
         </Sidebar.Pushable>

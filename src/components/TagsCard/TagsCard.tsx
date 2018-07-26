@@ -14,7 +14,7 @@ export default (props: TagsCardProps) => {
     <Card>
       <Card.Content>
         <Card.Header>
-          Tags
+           标签
         </Card.Header>
       </Card.Content>
       <Card.Content>

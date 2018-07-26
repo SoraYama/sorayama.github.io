@@ -4,7 +4,7 @@ import { get } from "lodash";
 import { Header, Container, Segment, Icon, Label, Button, Grid, Card, Image, Item, Comment } from "semantic-ui-react";
 import { MarkdownRemark, ImageSharp, MarkdownRemarkConnection, Site } from "../graphql-types";
 import BlogTitle from "../components/BlogTitle";
-import { DiscussionEmbed } from "disqus-react";
+// import { DiscussionEmbed } from "disqus-react";
 
 interface BlogPostProps {
   data: {
@@ -21,7 +21,8 @@ export default (props: BlogPostProps) => {
   const tags = props.data.post.frontmatter.tags
     .map((tag) => <Label key={tag}><Link to={`/blog/tags/${tag}/`}>{tag}</Link></Label>);
 
-  const recents = props.data.recents.edges
+  const recents = props.data.recents ?
+    props.data.recents.edges
     .map(({ node }) => {
       const recentAvatar = node.frontmatter.author.avatar.children[0] as ImageSharp;
       const recentCover = get(node, "frontmatter.image.children.0.responsiveResolution", {});
@@ -54,7 +55,7 @@ export default (props: BlogPostProps) => {
           />
         </div>
       );
-    });
+    }) : "";
 
   const cover = get(frontmatter, "image.children.0.responsiveResolution", {} );
   return (
@@ -70,7 +71,9 @@ export default (props: BlogPostProps) => {
             <Item.Content>
               <Item.Description>{frontmatter.author.id}</Item.Description>
               <Item.Meta>{frontmatter.author.bio}</Item.Meta>
-              <Item.Extra>{frontmatter.updatedDate} - {timeToRead} min read</Item.Extra>
+              <Item.Extra>
+                更新于 {frontmatter.updatedDate} - 差不多要花 {timeToRead} 分钟阅读
+              </Item.Extra>
             </Item.Content>
           </Item>
         </Item.Group>
@@ -87,15 +90,15 @@ export default (props: BlogPostProps) => {
         }}
       />
       <Segment vertical>
-        {tags}
+        标签们：{tags}
       </Segment>
-      {props.data.site
+      {/* {props.data.site
         && props.data.site.siteMetadata
         && props.data.site.siteMetadata.disqus
         && <Segment vertical>
-            <DiscussionEmbed shortname={props.data.site.siteMetadata.disqus}/>
-        </Segment>
-      }
+           <DiscussionEmbed shortname={props.data.site.siteMetadata.disqus}/>
+         </Segment>
+      } */}
       <Segment vertical>
         <Grid padded centered>
           {recents}
