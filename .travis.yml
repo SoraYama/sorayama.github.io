@@ -1,20 +1,35 @@
 language: node_js
+
 node_js:
-  - "8.9.1"
-os:
-  - linux
-  - osx
+  - "9.8.0"
+
 sudo: false
+
+branches:
+  only:
+    - dev
+
+public_repo: 40ce351805901ff0a3c87192bf4fb9d4a6233a36
+
 addons:
   apt:
     sources:
-    - ubuntu-toolchain-r-test
+      - ubuntu-toolchain-r-test
     packages:
-    - g++-4.8
+      - g++-4.8
   code_climate:
-    repo_token: ae474865d00b66dab32c385b1799e62a27442b93ea28e655da358d7e0d8587a4
-osx_image: xcode8
+    repo_token: 40ce351805901ff0a3c87192bf4fb9d4a6233a36
+
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX=g++-4.8; fi
-after_script: 
-  - npm run codeclimate
+  - npm install -g yarn
+
+install:
+  - yarn
+
+script:
+  - yarn run test
+  - yarn run deploy
+
+after_script:
+  - yarn run codeclimate
