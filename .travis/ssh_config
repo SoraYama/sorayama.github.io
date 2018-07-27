@@ -1,0 +1,4 @@
+Host *
+    StrictHostKeyChecking no
+    IdentityFile ~/.ssh/SoraYama
+    IdentitiesOnly yes
