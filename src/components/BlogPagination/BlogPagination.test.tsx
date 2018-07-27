@@ -1,4 +1,5 @@
 import { render, configure } from "enzyme";
+import "raf/polyfill";
 import "jest";
 import * as React from "react";
 import BlogPagination from "./BlogPagination";

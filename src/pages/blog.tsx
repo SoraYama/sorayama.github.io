@@ -21,7 +21,6 @@ interface BlogProps {
 }
 
 export default (props: BlogProps) => {
-  console.log("******", props);
   const tags = props.data.tags.group;
   const posts = props.data.posts.edges;
   const { pathname } = props.location;
@@ -35,7 +34,6 @@ export default (props: BlogProps) => {
         const avatar = frontmatter.author.avatar.children[0] as ImageSharp;
         const cover = get(frontmatter, "image.children.0.responsiveResolution", {});
 
-        console.log(excerpt);
         const extra = (
           <Comment.Group>
             <Comment>

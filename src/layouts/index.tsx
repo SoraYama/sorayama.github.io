@@ -10,6 +10,7 @@ import "../css/semantic.min.css";
 import "prismjs/themes/prism-okaidia.css";
 import { Provider } from "react-redux";
 import { store } from "../store";
+import { MenuItem } from "../components/Menu";
 
 declare global {
   interface Window {
@@ -21,7 +22,7 @@ export const menuItems = [
   { name: "Home", path: "/", exact: true, icon: "home", inverted: true },
   { name: "Blog", path: "/blog/", exact: false, icon: "newspaper" },
   { name: "About", path: "/about/", exact: true, icon: "info circle" },
-];
+] as MenuItem[];
 
 interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
   location: {

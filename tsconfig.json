@@ -1,22 +1,18 @@
 {
     "compilerOptions": {
-        "baseUrl": ".",
         "outDir": "./dist/",
-        "sourceMap": true,
-        "noImplicitAny": true,
-        "module": "commonJS",
-        "target": "es5",
+        "sourceMap": false,
+        "module": "commonjs",
+        "target": "esnext",
         "jsx": "react",
+        "allowJs": true,
         "lib": ["dom", "esnext"],
-        "rootDir": "src",
+        "noImplicitAny": true,
         "moduleResolution": "node",
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true
     },
     "include": [
         "./src/**/*"
-    ],
-    "exclude": [
-        "particles.min.js"
     ]
 }

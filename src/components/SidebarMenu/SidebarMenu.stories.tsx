@@ -7,12 +7,13 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 import { SidebarMenu } from "./SidebarMenu";
+import { MenuItem } from "../Menu";
 
 const items = [
   { name: "Home", path: "/", exact: true, icon: "home" },
   { name: "About", path: "/about/", exact: true, icon: "info circle" },
   { name: "Blog", path: "/blog/", exact: false, icon: "newspaper" },
-];
+] as MenuItem[];
 
 const LinkStub: any = (props: any) =>
   <div {...props} onClick={action(props.to.toString())} >{props.children}</div>;

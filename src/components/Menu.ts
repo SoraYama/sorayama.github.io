@@ -1,11 +1,12 @@
 import * as React from "react";
 import { GatsbyLinkProps } from "gatsby-link";
+import { SemanticICONS } from "semantic-ui-react";
 
 export interface MenuItem {
   name: string;
   path: string;
   exact: boolean;
-  icon?: string;
+  icon?: SemanticICONS;
   inverted?: boolean;
 }
 

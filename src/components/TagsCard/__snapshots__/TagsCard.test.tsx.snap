@@ -39,7 +39,7 @@ ShallowWrapper {
       "children": Array [
         <CardContent>
           <CardHeader>
-                    Tags
+                    标签
           </CardHeader>
 </CardContent>,
         <CardContent>
@@ -120,7 +120,7 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "children": <CardHeader>
-            Tags
+            标签
 </CardHeader>,
         },
         "ref": null,
@@ -129,10 +129,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "children": "Tags",
+            "children": "标签",
           },
           "ref": null,
-          "rendered": "Tags",
+          "rendered": "标签",
           "type": [Function],
         },
         "type": [Function],
@@ -553,7 +553,7 @@ ShallowWrapper {
         "children": Array [
           <CardContent>
             <CardHeader>
-                        Tags
+                        标签
             </CardHeader>
 </CardContent>,
           <CardContent>
@@ -634,7 +634,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "children": <CardHeader>
-              Tags
+              标签
 </CardHeader>,
           },
           "ref": null,
@@ -643,10 +643,10 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "function",
             "props": Object {
-              "children": "Tags",
+              "children": "标签",
             },
             "ref": null,
-            "rendered": "Tags",
+            "rendered": "标签",
             "type": [Function],
           },
           "type": [Function],

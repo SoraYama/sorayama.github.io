@@ -1,4 +1,5 @@
 import { shallow, configure } from "enzyme";
+import "raf/polyfill";
 import "jest";
 import * as React from "react";
 import { HeaderMenu } from "./HeaderMenu";

@@ -3,7 +3,7 @@
  * Typed.js version: v2.0.8
  */
 
-declare module 'typed.js' {
+declare module "typed.js" {
   interface TypedOptions {
     /**
      * strings to be typed
@@ -26,7 +26,7 @@ declare module 'typed.js' {
      */
     backSpeed?: number;
     /**
-     * only backspace what doesn't match the previous string
+     * only backspace what doesn"t match the previous string
      */
     smartBackspace?: boolean;
     /**
@@ -78,7 +78,7 @@ declare module 'typed.js' {
      */
     bindInputFocusEvents?: boolean;
     /**
-     * 'html' or 'null' for plaintext
+     * "html" or "null" for plaintext
      */
     contentType?: string;
     /**

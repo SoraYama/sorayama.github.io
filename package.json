@@ -1,23 +1,22 @@
 {
-  "name": "gatsby-starter",
+  "name": "sorayama-personal-blog",
   "version": "1.0.0",
-  "description": "Gatsby 1.0 starter",
-  "author": "fabien0102 <fabien0102@gmail.com>",
+  "description": "SoraYama's personal blog site driven by Gatsby 1.0",
+  "author": "SoraYama <sorayamahou@gmail.com>",
+  "private": true,
   "license": "MIT",
   "scripts": {
     "start": "gatsby develop",
     "develop": "gatsby develop",
     "build": "gatsby build",
-    "lint": "npm run lint:ts && npm run lint:md && npm run lint:js && npm run lint:css",
+    "lint": "npm run lint:ts && npm run lint:md",
     "lint:ts": "tslint \"./src/**/*.ts\" \"./src/**/*.tsx\"",
     "lint:md": "remark .",
-    "lint:js": "xo",
-    "lint:css": "stylelint \"src/**/*.css\"",
-    "lint:scss": "stylelint src/**/*.scss --syntax scss",
     "test": "npm run lint && jest",
     "test:watch": "jest --watch",
     "generate": "plop --plopfile ./generators/plopfile.js",
     "graphql-types": "gql-gen --url http://localhost:8000/___graphql --template typescript --out ./src/graphql-types.d.ts",
+    "deploy": "gatsby build && gh-pages -d public -b master",
     "precommit": "lint-staged",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o public/docs",
@@ -32,7 +31,7 @@
     "@types/react-router": "^4.0.14",
     "@types/react-router-dom": "^4.0.8",
     "babel-eslint": "^7.2.1",
-    "babel-loader": "7.1.1",
+    "babel-loader": "6",
     "change-case": "^3.0.1",
     "codeclimate-test-reporter": "^0.4.1",
     "disqus-react": "^1.0.5",
@@ -88,6 +87,7 @@
     "eslint-config-xo-react": "0.11.1",
     "eslint-plugin-react": "6.10.3",
     "flat": "^2.0.1",
+    "gh-pages": "^1.2.0",
     "husky": "0.13.3",
     "jest": "19.0.2",
     "lint-staged": "3.4.0",
@@ -106,8 +106,7 @@
     "xo": "^0.18.1"
   },
   "keywords": [
-    "gatsby",
-    "starter"
+    "gatsby"
   ],
   "jest": {
     "globals": {
