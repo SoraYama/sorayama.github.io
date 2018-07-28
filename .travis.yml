@@ -12,6 +12,7 @@ deploy:
   provider: pages
   local-dir: public
   skip_cleanup: true
+  target-branch: master
   github_token: $GITHUB_TOKEN
   keep-history: true
   on:
@@ -30,5 +31,5 @@ install:
 script:
   - yarn run test
 after_success:
-  - yarn run deploy
+  - yarn run build
   - yarn run codeclimate
