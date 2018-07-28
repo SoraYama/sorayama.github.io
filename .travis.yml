@@ -15,6 +15,7 @@ addons:
   code_climate:
     repo_token: 40ce351805901ff0a3c87192bf4fb9d4a6233a36
 before_install:
+  - mkdir ~/.ssh
   - openssl aes-256-cbc -K $encrypted_782b3d36bc6b_key -iv $encrypted_782b3d36bc6b_iv
     -in SoraYama.enc -out ~\/.ssh/SoraYama -d
   - chmod 600 ~/.ssh/SoraYama
