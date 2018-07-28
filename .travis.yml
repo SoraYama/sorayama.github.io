@@ -11,19 +11,11 @@ branches:
 deploy:
   provider: pages
   skip-cleanup: true
-  github-token: 11003181c464d9de835f8aa3484be7f24e5d094a
+  github-token: $GITHUB_TOKEN
   local_dir: public
   keep-history: true
   on:
-    branch: master
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-4.8
-  code_climate:
-    repo_token: 11003181c464d9de835f8aa3484be7f24e5d094a
+    branch: dev
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX=g++-4.8; fi
   - npm install -g yarn
