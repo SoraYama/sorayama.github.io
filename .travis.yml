@@ -11,10 +11,11 @@ branches:
 deploy:
   provider: pages
   local-dir: public
-  target-branch: master
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   keep-history: true
+  on:
+    branch: dev
 addons:
   apt:
     sources:
@@ -22,12 +23,12 @@ addons:
     packages:
       - g++-4.8
 before_install:
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX=g++-4.8; fi
-- npm install -g yarn
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX=g++-4.8; fi
+  - npm install -g yarn
 install:
-- yarn
+  - yarn
 script:
-- yarn run test
+  - yarn run test
 after_success:
-- yarn run deploy
-- yarn run codeclimate
+  - yarn run deploy
+  - yarn run codeclimate
