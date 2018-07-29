@@ -1,5 +1,7 @@
 # SoraYama's personal blog site
 
+![build status](https://travis-ci.org/SoraYama/sorayama.github.io.svg?branch=dev)
+
 > Powered by [Gatsby](https://www.gatsbyjs.org/) and [fabien's typescript gatsby starter](https://github.com/fabien0102/gatsby-starter)
 
 ## Commands
