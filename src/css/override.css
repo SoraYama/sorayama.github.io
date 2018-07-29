@@ -54,15 +54,33 @@ code {
   background: rgba(250, 250, 250, 0.15);
 }
 
-:not(pre) > pre[class*="language-"] {
+.blog-post-md :not(pre) > pre[class*="language-"] {
   box-shadow: 0 0 2px 2px rgba(250, 250, 250, 0.4);
 }
 
+.blog-post-md :not(pre) > code[class*="language-"] {
+  padding: 0 5px !important;
+  color: #f4f41f;
+  border: 1px solid rgba(250, 250, 250, 0.15);
+}
+
+.blog-post-md h2,
+.blog-post-md h3,
+.blog-post-md h4 {
+  border-bottom: 1px dashed rgba(250, 250, 250, 0.3);
+  padding-bottom: 5px;
+}
+
+.blog-post-md p {
+  text-indent: 2em;
+}
+
 /** Markdown blockquote customization */
-blockquote {
+.blog-post-md blockquote {
   border-left: 3px solid #a6e22e;
+  border-radius: 0 5px 5px 0;
   margin: 1em;
-  padding: 5px 1em;
+  padding: 10px;
   color: rgba(250, 250, 250, 0.55);
   background-color: rgba(25, 25, 25, 0.3);
 }

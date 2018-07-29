@@ -16,7 +16,9 @@
             false
         ],
         "no-console": [
-            false
+            true,
+            "log",
+            "debug"
         ],
         "no-var-requires": false,
         "no-namespace": false

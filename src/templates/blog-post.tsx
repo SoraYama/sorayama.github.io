@@ -4,7 +4,7 @@ import { get } from "lodash";
 import { Header, Container, Segment, Icon, Label, Button, Grid, Card, Image, Item, Comment } from "semantic-ui-react";
 import { MarkdownRemark, ImageSharp, MarkdownRemarkConnection, Site } from "../graphql-types";
 import BlogTitle from "../components/BlogTitle";
-import { DiscussionEmbed, IDisqusConfig } from "disqus-react";
+import { DiscussionEmbed, DisqusConfig } from "disqus-react";
 
 interface BlogPostProps {
   data: {
@@ -58,7 +58,7 @@ export default (props: BlogPostProps) => {
     }) : "";
 
   const cover = get(frontmatter, "image.children.0.responsiveResolution", {} );
-  const disqusConfig: IDisqusConfig = {
+  const disqusConfig: DisqusConfig = {
     url: window.location.href,
     identifier: props.data.post.id,
     title: props.data.post.frontmatter.title,
@@ -88,7 +88,7 @@ export default (props: BlogPostProps) => {
         {...cover}
         fluid
       />
-      <Segment vertical
+      <Segment vertical className="blog-post-md"
         style={{ border: "none" }}
         dangerouslySetInnerHTML={{
           __html: html,
