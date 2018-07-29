@@ -57,3 +57,12 @@ code {
 :not(pre) > pre[class*="language-"] {
   box-shadow: 0 0 2px 2px rgba(250, 250, 250, 0.4);
 }
+
+/** Markdown blockquote customization */
+blockquote {
+  border-left: 3px solid #a6e22e;
+  margin: 1em;
+  padding: 5px 1em;
+  color: rgba(250, 250, 250, 0.55);
+  background-color: rgba(25, 25, 25, 0.3);
+}
