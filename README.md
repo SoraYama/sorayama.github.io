@@ -1,6 +1,6 @@
 # SoraYama's personal blog site
 
-![build status](https://travis-ci.org/SoraYama/sorayama.github.io.svg?branch=dev)
+[![Build Status](https://travis-ci.org/SoraYama/sorayama.github.io.svg?branch=dev)](https://travis-ci.org/SoraYama/sorayama.github.io)
 
 > Powered by [Gatsby](https://www.gatsbyjs.org/) and [fabien's typescript gatsby starter](https://github.com/fabien0102/gatsby-starter)
 
