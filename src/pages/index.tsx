@@ -57,10 +57,10 @@ export default class Home extends React.Component<IndexPageProps> {
   componentDidMount() {
     window.particlesJS("home-particles", this.particleJSON);
     this.typedInstance = new Typed("#sorayama", {
-      strings: ["这里是空山", "SoraYama", "一个写点前端的人", "是足球裁判", "很高兴认识你。"],
+      strings: ["这里是空山", "SoraYama", "一个写点前端的人", "是足球裁判", "欢迎。"],
       typeSpeed: 100,
       backSpeed: 50,
-      backDelay: 50,
+      backDelay: 1500,
     });
   }
 
