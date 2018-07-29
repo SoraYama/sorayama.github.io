@@ -128,3 +128,10 @@ pre {
   border-radius: 0.3em;
   background: #272822;
 }
+
+.segment.disqus-embed {
+  background: rgba(250, 250, 250, .70) !important;
+  padding: 20px !important;
+  border-radius: 5px !important;
+  margin-top: 10px !important;
+}

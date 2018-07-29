@@ -4,7 +4,7 @@ import { get } from "lodash";
 import { Header, Container, Segment, Icon, Label, Button, Grid, Card, Image, Item, Comment } from "semantic-ui-react";
 import { MarkdownRemark, ImageSharp, MarkdownRemarkConnection, Site } from "../graphql-types";
 import BlogTitle from "../components/BlogTitle";
-// import { DiscussionEmbed } from "disqus-react";
+import { DiscussionEmbed, IDisqusConfig } from "disqus-react";
 
 interface BlogPostProps {
   data: {
@@ -38,7 +38,7 @@ export default (props: BlogPostProps) => {
                 {node.frontmatter.author.id}
               </Comment.Author>
               <Comment.Metadata style={{ margin: 0 }}>
-                {node.timeToRead} min read
+                差不多需要 {node.timeToRead} 分钟阅读
               </Comment.Metadata>
             </Comment.Content>
           </Comment>
@@ -58,6 +58,11 @@ export default (props: BlogPostProps) => {
     }) : "";
 
   const cover = get(frontmatter, "image.children.0.responsiveResolution", {} );
+  const disqusConfig: IDisqusConfig = {
+    url: window.location.href,
+    identifier: props.data.post.id,
+    title: props.data.post.frontmatter.title,
+  };
   return (
     <Container>
       <BlogTitle />
@@ -92,13 +97,13 @@ export default (props: BlogPostProps) => {
       <Segment vertical>
         标签们：{tags}
       </Segment>
-      {/* {props.data.site
+      {props.data.site
         && props.data.site.siteMetadata
         && props.data.site.siteMetadata.disqus
-        && <Segment vertical>
-           <DiscussionEmbed shortname={props.data.site.siteMetadata.disqus}/>
+        && <Segment vertical className="disqus-embed">
+           <DiscussionEmbed config={disqusConfig} shortname={props.data.site.siteMetadata.disqus}/>
          </Segment>
-      } */}
+      }
       <Segment vertical>
         <Grid padded centered>
           {recents}

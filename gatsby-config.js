@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `SoraYama - dinglingdong`,
     googleVerification: `abcdefz`,
-    disqus: `gatsby-typescript`
+    disqus: `sorayama`
   },
   mapping: {
     'MarkdownRemark.frontmatter.author': `AuthorJson`

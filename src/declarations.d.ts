@@ -7,7 +7,14 @@ declare module "*/package.json" {
 declare const graphql: (query: TemplateStringsArray) => void;
 
 declare module "disqus-react" {
+
+  interface DisqusConfig {
+    url: string;
+    identifier: string;
+    title: string;
+  }
   export class DiscussionEmbed extends React.Component<{
+    config: DisqusConfig,
     shortname: string,
   }, {}> { }
 }
