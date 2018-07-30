@@ -129,6 +129,15 @@ pre {
   background: #272822;
 }
 
+.recent .ui.comments .comment .avatar {
+  margin: unset;
+}
+
+.recent .ui.header {
+  border-top: 2px solid rgba(250, 250, 250, 0.3);
+  padding-top: 10px;
+}
+
 .segment.disqus-embed {
   background: rgba(250, 250, 250, 0.7) !important;
   padding: 20px !important;

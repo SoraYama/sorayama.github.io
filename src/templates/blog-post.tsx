@@ -35,7 +35,7 @@ export default (props: BlogPostProps) => {
             />
             <Comment.Content>
               <Comment.Author style={{ fontWeight: 400 }}>
-                {node.frontmatter.author.id}
+                最近更新于 {node.frontmatter.updatedDate}
               </Comment.Author>
               <Comment.Metadata style={{ margin: 0 }}>
                 差不多需要 {node.timeToRead} 分钟阅读
@@ -104,8 +104,8 @@ export default (props: BlogPostProps) => {
            <DiscussionEmbed config={disqusConfig} shortname={props.data.site.siteMetadata.disqus}/>
          </Segment>
       }
-      <Segment vertical>
-        <Header style={{ borderTop: "2px solid rgba(250, 250, 250, 0.3)", paddingTop: "20px" }}>
+      <Segment vertical className="recent">
+        <Header>
           最近更新了：
         </Header>
         <Grid padded centered>
@@ -178,6 +178,7 @@ export const pageQuery = graphql`
         timeToRead
         frontmatter {
           title
+          updatedDate
           image {
             children {
               ... on ImageSharp {
@@ -189,7 +190,6 @@ export const pageQuery = graphql`
             }
           }
           author {
-            id
             avatar {
               children {
                 ... on ImageSharp {
