@@ -105,6 +105,9 @@ export default (props: BlogPostProps) => {
          </Segment>
       }
       <Segment vertical>
+        <Header style={{ borderTop: "2px solid rgba(250, 250, 250, 0.3)", paddingTop: "20px" }}>
+          最近更新了：
+        </Header>
         <Grid padded centered>
           {recents}
         </Grid>
