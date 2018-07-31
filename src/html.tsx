@@ -39,6 +39,7 @@ module.exports = (props: HtmlProps) => {
     content={config.siteMetadata.googleVerification} /> : null;
 
   const particles = <script src={withPrefix("/particles.min.js")} />;
+  const favicon = <link href={withPrefix("/favicon.png")} type="image/x-icon" rel="shortcut icon" />;
 
   return (
     <html lang="en">
@@ -51,6 +52,7 @@ module.exports = (props: HtmlProps) => {
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
         />
+        {favicon}
         {particles}
         {head.title.toComponent()}
         {head.meta.toComponent()}
