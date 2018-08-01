@@ -63,6 +63,7 @@ export default (props: BlogProps) => {
 
         return (
           <Card key={slug}
+            className="blog-post"
             fluid
             image={cover}
             header={frontmatter.title}

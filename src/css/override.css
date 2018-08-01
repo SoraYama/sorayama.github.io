@@ -108,10 +108,14 @@ code {
   border-radius: 5px;
   padding: 5px 10px;
   margin-top: 10px;
-  transition: all .5s ease !important;
+  transition: all 0.5s ease !important;
 }
 
 .read-more:hover {
   background: rgb(147, 199, 251);
   color: white;
+}
+
+.blog-post + .blog-post {
+  margin-top: 40px !important;
 }
