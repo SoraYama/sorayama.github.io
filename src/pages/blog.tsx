@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "gatsby-link";
-import { Header, Grid, Card, List, Container, Feed, Segment, Comment } from "semantic-ui-react";
+import { Grid, Card, Container, Segment, Comment, Button } from "semantic-ui-react";
 import { MarkdownRemarkConnection, ImageSharp } from "../graphql-types";
 import BlogTitle from "../components/BlogTitle";
 import TagsCard from "../components/TagsCard/TagsCard";
@@ -57,7 +57,7 @@ export default (props: BlogProps) => {
           <Card.Description>
             {excerpt}
             <br />
-            <Link to={slug}>Read more…</Link>
+            <Link className="read-more" to={slug}>阅读更多</Link>
           </Card.Description>
         );
 
