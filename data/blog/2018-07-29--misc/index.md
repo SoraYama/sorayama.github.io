@@ -1,7 +1,7 @@
 ---
 title: Misc
 createdDate: '2018-07-29'
-updatedDate: '2018-07-29'
+updatedDate: '2019-07-30'
 author: SoraYama - 空山
 tags:
   - 2018-07
@@ -91,4 +91,13 @@ sudo chown -R git:git sample.git
 git clone git@server:/srv/sample.git
 Cloning into 'sample'...
 warning: You appear to have cloned an empty repository.
+```
+
+### git 大小写忽略：
+
+被坑过两次，第一次还不知道是怎么回事 = =
+具体来说 git 默认对文件名大小写不敏感，如果只改文件名大小写的话会没有任何可提交的东西，因此需要配置
+
+```bash
+git config core.ignorecase false
 ```
