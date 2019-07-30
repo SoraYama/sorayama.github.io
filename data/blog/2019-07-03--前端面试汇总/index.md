@@ -3,7 +3,7 @@ title: 前端面试汇总(持续更新)
 createdDate: "2019-07-03"
 updatedDate: "2019-07-28"
 author: SoraYama - 空山
-image: gatsby-word.jpeg
+image: fe.jpg
 tags:
   - 2019-07
   - 前端
