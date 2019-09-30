@@ -1,45 +1,56 @@
 /* tslint:disable no-var-requires */
 /* tslint:disable no-console */
 
-import * as React from "react";
-import Helmet from "react-helmet";
-import { withPrefix } from "gatsby-link";
+import * as React from 'react'
+import Helmet from 'react-helmet'
+import { withPrefix } from 'gatsby-link'
 
-const config = require("../gatsby-config.js");
+const config = require('../gatsby-config.js')
 
 // Load production style
-let styles: string;
+let styles: string
 if (process.env.NODE_ENV === `production`) {
   try {
-    styles = require("!raw-loader!../public/styles.css");
+    styles = require('!raw-loader!../public/styles.css')
   } catch (err) {
-    console.log(err);
+    console.log(err)
   }
 }
 
 interface HtmlProps {
-  body: any;
-  postBodyComponents: any;
-  headComponents: any;
+  body: any
+  postBodyComponents: any
+  headComponents: any
 }
 
 // Use `module.exports` to be compliante with `webpack-require` import method
 module.exports = (props: HtmlProps) => {
-  const head = Helmet.rewind();
+  const head = Helmet.rewind()
 
-  const css = (process.env.NODE_ENV === `production`) ?
-    <style
-      id="gatsby-inlined-css"
-      dangerouslySetInnerHTML={{ __html: styles }}
+  const css =
+    process.env.NODE_ENV === `production` ? (
+      <style
+        id="gatsby-inlined-css"
+        dangerouslySetInnerHTML={{ __html: styles }}
+      />
+    ) : null
+
+  const verification =
+    config.siteMetadata && config.siteMetadata.googleVerification ? (
+      <meta
+        name="google-site-verification"
+        content={config.siteMetadata.googleVerification}
+      />
+    ) : null
+
+  const particles = <script src={withPrefix('/particles.min.js')} />
+  const favicon = (
+    <link
+      href={withPrefix('/favicon.png')}
+      type="image/x-icon"
+      rel="shortcut icon"
     />
-    : null;
-
-  const verification = config.siteMetadata && config.siteMetadata.googleVerification ? <meta
-    name="google-site-verification"
-    content={config.siteMetadata.googleVerification} /> : null;
-
-  const particles = <script src={withPrefix("/particles.min.js")} />;
-  const favicon = <link href={withPrefix("/favicon.png")} type="image/x-icon" rel="shortcut icon" />;
+  )
 
   return (
     <html lang="en">
@@ -61,12 +72,9 @@ module.exports = (props: HtmlProps) => {
         {verification}
       </head>
       <body>
-        <div
-          id="___gatsby"
-          dangerouslySetInnerHTML={{ __html: props.body }}
-        />
+        <div id="___gatsby" dangerouslySetInnerHTML={{ __html: props.body }} />
         {props.postBodyComponents}
       </body>
     </html>
-  );
-};
+  )
+}

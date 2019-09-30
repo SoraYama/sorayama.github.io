@@ -1,8 +1,8 @@
-import * as React from "react";
-import Typed from "typed.js";
-import Link from "gatsby-link";
-import HeaderMenu from "../components/HeaderMenu/HeaderMenu";
-import { menuItems } from "../layouts";
+import * as React from 'react'
+import Typed from 'typed.js'
+import Link from 'gatsby-link'
+import HeaderMenu from '../components/HeaderMenu/HeaderMenu'
+import { menuItems } from '../layouts'
 import {
   Button,
   Segment,
@@ -10,12 +10,12 @@ import {
   Grid,
   Header,
   Icon,
-} from "semantic-ui-react";
+} from 'semantic-ui-react'
 
 interface IndexPageProps {
   location: {
-    pathname: string;
-  };
+    pathname: string
+  }
 }
 
 export default class Home extends React.Component<IndexPageProps> {
@@ -42,7 +42,7 @@ export default class Home extends React.Component<IndexPageProps> {
       },
     },
     interactivity: {
-      detect_on: "window",
+      detect_on: 'window',
       events: {
         onclick: {
           enable: false,
@@ -50,23 +50,21 @@ export default class Home extends React.Component<IndexPageProps> {
       },
     },
     retina_detect: true,
-  };
+  }
 
-  private typedInstance: Typed;
+  private typedInstance: Typed
 
   componentDidMount() {
-    window.particlesJS("home-particles", this.particleJSON);
-    this.typedInstance = new Typed("#sorayama", {
-      strings: ["这里是空山", "SoraYama", "一个写点前端的人", "是足球裁判", "欢迎。"],
-      typeSpeed: 100,
-      backSpeed: 50,
-      backDelay: 1500,
-    });
+    window.particlesJS('home-particles', this.particleJSON)
+    this.typedInstance = new Typed('#sorayama', {
+      strings: ['El Psy Congroo.'],
+      typeSpeed: 150,
+    })
   }
 
   componentWillUnmount() {
     if (this.typedInstance) {
-      this.typedInstance.destroy();
+      this.typedInstance.destroy()
     }
   }
 
@@ -77,13 +75,16 @@ export default class Home extends React.Component<IndexPageProps> {
         <Segment vertical textAlign="center" className="masthead">
           <div id="home-particles" />
           <HeaderMenu
-            Link={Link} pathname={this.props.location.pathname} items={menuItems} inverted
+            Link={Link}
+            pathname={this.props.location.pathname}
+            items={menuItems}
+            inverted
           />
-          <Container text style={{ display: "flex", justifyContent: "center" }}>
+          <Container text style={{ display: 'flex', justifyContent: 'center' }}>
             <Header id="sorayama" inverted as="h1" />
           </Container>
         </Segment>
       </div>
-    );
+    )
   }
 }
