@@ -1,177 +1,78 @@
 {
-  "name": "sorayama-personal-blog",
-  "version": "1.0.0",
-  "description": "SoraYama's personal blog site driven by Gatsby 1.0",
-  "author": "SoraYama <sorayamahou@gmail.com>",
+  "name": "sroayama-blog",
   "private": true,
-  "license": "MIT",
-  "scripts": {
-    "start": "gatsby develop",
-    "develop": "gatsby develop",
-    "build": "gatsby build",
-    "lint": "npm run lint:ts && npm run lint:md",
-    "lint:ts": "tslint \"./src/**/*.ts\" \"./src/**/*.tsx\"",
-    "lint:md": "remark .",
-    "test": "npm run lint && jest",
-    "test:watch": "jest --watch",
-    "generate": "plop --plopfile ./generators/plopfile.js",
-    "graphql-types": "gql-gen --url http://localhost:8000/___graphql --template typescript --out ./src/graphql-types.d.ts",
-    "deploy": "gatsby build && gh-pages -d public -b master",
-    "precommit": "lint-staged",
-    "storybook": "start-storybook -p 9001 -c .storybook",
-    "storybook:build": "build-storybook -c .storybook -o public/docs",
-    "codeclimate": "codeclimate-test-reporter < coverage/lcov.info"
+  "description": "SoraYama's personal blog site driven by Gatsby 2",
+  "version": "0.1.0",
+  "author": {
+    "name": "SoraYama",
+    "email": "sorayamahou@gmail.com"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.63",
-    "@types/react": "^16.0.20",
-    "@types/react-dom": "^16.0.2",
-    "@types/react-helmet": "5.0.0",
-    "@types/react-redux": "^5.0.9",
-    "@types/react-router": "^4.0.14",
-    "@types/react-router-dom": "^4.0.8",
-    "babel-eslint": "^7.2.1",
-    "babel-loader": "6",
-    "change-case": "^3.0.1",
-    "codeclimate-test-reporter": "^0.4.1",
-    "disqus-react": "^1.0.5",
-    "gatsby": "latest",
-    "gatsby-link": "latest",
-    "gatsby-plugin-glamor": "latest",
-    "gatsby-plugin-google-analytics": "latest",
-    "gatsby-plugin-manifest": "latest",
-    "gatsby-plugin-offline": "latest",
-    "gatsby-plugin-sharp": "latest",
-    "gatsby-plugin-typescript": "latest",
-    "gatsby-remark-autolink-headers": "latest",
-    "gatsby-remark-copy-linked-files": "latest",
-    "gatsby-remark-images": "latest",
-    "gatsby-remark-prismjs": "latest",
-    "gatsby-source-filesystem": "latest",
-    "gatsby-transformer-json": "latest",
-    "gatsby-transformer-remark": "latest",
-    "gatsby-transformer-sharp": "latest",
-    "graphql-code-generator": "^0.5.2",
-    "gray-matter": "^2.1.1",
-    "lodash": "^4.17.4",
-    "moment": "^2.22.2",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "react-helmet": "5.0.3",
-    "react-redux": "^5.0.6",
+    "gatsby": "^2.15.35",
+    "gatsby-image": "^2.2.27",
+    "gatsby-link": "^2.2.20",
+    "gatsby-plugin-google-analytics": "^2.1.21",
+    "gatsby-plugin-manifest": "^2.2.21",
+    "gatsby-plugin-offline": "^3.0.14",
+    "gatsby-plugin-react-helmet": "^3.1.11",
+    "gatsby-plugin-sharp": "^2.2.29",
+    "gatsby-plugin-typescript": "^2.1.12",
+    "gatsby-remark-autolink-headers": "^2.1.14",
+    "gatsby-remark-copy-linked-files": "^2.1.26",
+    "gatsby-remark-images": "^3.1.26",
+    "gatsby-remark-prismjs": "^3.3.18",
+    "gatsby-source-filesystem": "^2.1.31",
+    "gatsby-transformer-json": "^2.2.13",
+    "gatsby-transformer-remark": "^2.6.28",
+    "gatsby-transformer-sharp": "^2.2.21",
+    "gitalk": "^1.5.0",
+    "graphql": "^14.5.8",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-helmet": "^5.2.1",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
     "redux": "^4.0.4",
-    "redux-devtools-extension": "^2.13.2",
-    "semantic-ui-react": "^0.81.3",
-    "slash": "1.0.0",
-    "ts-loader": "^2.3.7",
-    "typed.js": "^2.0.8",
-    "typescript": "^2.9.2"
+    "styled-components": "^4.4.0"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^3.2.14",
-    "@storybook/addon-knobs": "^3.2.14",
-    "@storybook/addon-notes": "^3.2.10",
-    "@storybook/addon-options": "^3.2.14",
-    "@storybook/react": "^3.2.14",
-    "@types/enzyme": "^2.8.9",
-    "@types/jest": "^19.2.2",
-    "@types/node": "^7.0.15",
-    "@types/react-test-renderer": "^16.0.0",
-    "@types/storybook__addon-actions": "^3.0.1",
-    "@types/storybook__addon-knobs": "^3.2.0",
-    "@types/storybook__addon-notes": "^3.0.1",
-    "@types/storybook__addon-options": "^3.2.0",
-    "@types/storybook__react": "^3.0.5",
-    "@types/webpack-env": "^1.13.1",
-    "enzyme": "^3.0.0",
-    "enzyme-adapter-react-16": "^1.0.0",
-    "eslint-config-xo-react": "0.11.1",
-    "eslint-plugin-react": "6.10.3",
-    "flat": "^2.0.1",
-    "gh-pages": "^1.2.0",
-    "husky": "0.13.3",
-    "jest": "19.0.2",
-    "lint-staged": "3.4.0",
-    "mkdirp": "^0.5.1",
-    "plop": "^1.7.4",
+    "@babel/core": "^7.6.4",
+    "@graphql-codegen/cli": "^1.0.0",
+    "@graphql-codegen/typescript": "^1.0.0",
+    "@graphql-codegen/typescript-operations": "^1.0.0",
+    "@types/react": "^16.9.5",
+    "@types/react-dom": "^16.9.1",
+    "@types/react-redux": "^7.1.4",
+    "@types/react-router-dom": "^5.1.0",
+    "husky": "^3.0.8",
+    "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
-    "raw-loader": "^0.5.1",
-    "react-addons-test-utils": "^15.5.1",
-    "react-test-renderer": "16",
-    "remark-cli": "^3.0.1",
-    "remark-preset-lint-recommended": "^2.0.0",
-    "storybook-readme": "^3.0.6",
-    "stylelint": "^7.10.1",
-    "stylelint-config-standard": "^16.0.0",
-    "ts-jest": "19.0.8",
     "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0",
+    "tslint-loader": "^3.5.4",
     "tslint-plugin-prettier": "^2.0.1",
-    "xo": "^0.18.1"
+    "tslint-react": "^4.1.0",
+    "typesafe-actions": "^4.4.2",
+    "typescript": "^3.6.4"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "blog"
   ],
-  "jest": {
-    "globals": {
-      "__LINK_PREFIX__": "",
-      "__PREFIX_LINKS__": ""
-    },
-    "transform": {
-      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/templates/",
-      "/.cache"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "collectCoverage": true,
-    "coverageReporters": [
-      "lcov",
-      "text",
-      "html"
-    ]
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
   },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "tslint --fix",
-      "git add"
-    ],
-    "*.{js,jsx}": [
-      "xo --fix",
-      "git add"
-    ],
-    "*.md": [
-      "node tools/update-post-date.js",
-      "remark -o",
-      "git add"
-    ],
-    "*.css": [
-      "stylelint"
-    ]
-  },
-  "xo": {
-    "extends": "xo-react/space",
-    "space": true,
-    "rules": {
-      "no-case-declarations": 0,
-      "default-case": 0
-    },
-    "prettier": true,
-    "semicolon": false
-  },
-  "remarkConfig": {
-    "plugins": [
-      "remark-preset-lint-recommended"
-    ]
-  },
-  "stylelint": {
-    "extends": "stylelint-config-standard"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sorayama/sorayama.github.io"
   }
 }
