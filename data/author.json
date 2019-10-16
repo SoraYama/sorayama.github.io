@@ -1,9 +1,7 @@
-[
-  {
-    "id": "SoraYama - 空山",
-    "bio": "折腾点前端",
-    "avatar": "avatars/avatar.jpg",
-    "twitter": "@ClassicSilence1",
-    "github": "@SoraYama"
-  }
-]
+[{
+  "id": "SoraYama - 空山",
+  "bio": "折腾点前端和其他",
+  "avatar": "avatars/avatar.jpg",
+  "twitter": "@ClassicSilence1",
+  "github": "@SoraYama"
+}]
