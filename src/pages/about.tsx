@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { Header, Container, Segment, Icon } from 'semantic-ui-react'
+import { withLayout } from '../components/layout'
 
-export default () => {
+const AboutPage = () => {
   const aboutMe = (
     <ul>
       <li>
@@ -14,7 +15,7 @@ export default () => {
           {' '}
           SoraYama{' '}
         </a>
-        在 <a href="https://github.com/poooi">Poooi</a> 开发组打工（发微博
+        在 <a href="https://github.com/poooi">Poooi</a> 开发组打工
       </li>
       <li>
         <Icon name="weibo" /> Weibo:
@@ -35,13 +36,13 @@ export default () => {
       </Segment>
       <Segment vertical>
         <div>
-          这里是 空山 - SoraYama 的个人博客站，托管在 github pages， 由
-          <a href="https://www.gatsbyjs.org/"> gatsby 1.0</a> &
+          这里是 空山 - SoraYama 的个人博客站，托管在 GitHub Pages， 由
+          <a href="https://www.gatsbyjs.org/"> gatsby 2.0</a> &
           <a href="https://github.com/fabien0102/gatsby-starter">
             {' '}
             fabien's starter{' '}
           </a>
-          强力驱动
+          驱动
         </div>
         <div>
           关于我的话呢
@@ -51,3 +52,5 @@ export default () => {
     </Container>
   )
 }
+
+export default withLayout(AboutPage)

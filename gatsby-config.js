@@ -34,14 +34,13 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 690,
-              backgroundColor: `#f7f0eb`
-            }
-          },
+        plugins: [{
+          resolve: `gatsby-remark-images`,
+          options: {
+            maxWidth: 690,
+            backgroundColor: `#f7f0eb`
+          }
+        },
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-autolink-headers`
@@ -71,6 +70,7 @@ module.exports = {
         start_url: `/`,
         background_color: `#f7f7f7`,
         theme_color: `#191919`,
+        icon: `src/images/icon.png`,
         display: `minimal-ui`
       }
     },
@@ -82,4 +82,4 @@ module.exports = {
     // site!
     `gatsby-plugin-offline`
   ]
-};
+}

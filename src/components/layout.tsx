@@ -24,16 +24,13 @@ export const menuItems = [
   { name: 'About', path: '/about/', exact: true, icon: 'info circle' },
 ] as MenuItem[]
 
-interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
+interface LayoutProps extends React.HTMLProps<HTMLDivElement> {
   location: {
     pathname: string
   }
   children: any
 }
-export default class DefaultLayout extends React.PureComponent<
-  DefaultLayoutProps,
-  void
-> {
+export default class Layout extends React.PureComponent<LayoutProps> {
   render() {
     const { pathname } = this.props.location
     const isHome = pathname === '/'
@@ -56,7 +53,7 @@ export default class DefaultLayout extends React.PureComponent<
 
             {/* Render children pages */}
             <div style={{ paddingBottom: isHome ? '' : 60 }}>
-              {this.props.children()}
+              {this.props.children}
             </div>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
@@ -64,3 +61,17 @@ export default class DefaultLayout extends React.PureComponent<
     )
   }
 }
+
+export const withLayout = <P extends object>(
+  WrappedComponent: React.ComponentType<P>
+) =>
+  // tslint:disable-next-line: max-classes-per-file
+  class WithLayout extends React.Component<P & LayoutProps> {
+    render() {
+      return (
+        <Layout location={this.props.location}>
+          <WrappedComponent {...this.props} />
+        </Layout>
+      )
+    }
+  }

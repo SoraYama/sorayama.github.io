@@ -13,6 +13,7 @@ import BlogTitle from '../components/BlogTitle'
 import TagsCard from '../components/TagsCard/TagsCard'
 import BlogPagination from '../components/BlogPagination/BlogPagination'
 import { get } from 'lodash'
+import { withLayout } from '../components/layout'
 
 interface BlogProps {
   data: {
@@ -27,7 +28,7 @@ interface BlogProps {
   }
 }
 
-export default (props: BlogProps) => {
+const BlogPage = (props: BlogProps) => {
   const tags = props.data.tags.group
   const posts = props.data.posts.edges
   const { pathname } = props.location
@@ -121,6 +122,8 @@ export default (props: BlogProps) => {
     </Container>
   )
 }
+
+export default withLayout(BlogPage)
 
 export const pageQuery = graphql`
   query PageBlog {

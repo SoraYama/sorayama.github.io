@@ -30,8 +30,4 @@ export const reducer = (
 
 // Store
 export const initialState: StoreState = { isSidebarVisible: false }
-export const store = createStore<StoreState>(
-  reducer,
-  initialState,
-  devToolsEnhancer({})
-)
+export const store = createStore(reducer, initialState, devToolsEnhancer({}))

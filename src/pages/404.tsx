@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { Header, Icon, Grid } from 'semantic-ui-react'
+import { withLayout } from '../components/layout'
 
-export default () => (
+const NotFoundPage = () => (
   <Grid
     centered
     verticalAlign="middle"
@@ -18,3 +19,5 @@ export default () => (
     </Grid.Column>
   </Grid>
 )
+
+export default withLayout(NotFoundPage)

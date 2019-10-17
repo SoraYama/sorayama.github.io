@@ -2,23 +2,15 @@ import * as React from 'react'
 import Typed from 'typed.js'
 import Link from 'gatsby-link'
 import HeaderMenu from '../components/HeaderMenu/HeaderMenu'
-import { menuItems } from '../layouts'
-import {
-  Button,
-  Segment,
-  Container,
-  Grid,
-  Header,
-  Icon,
-} from 'semantic-ui-react'
+import { menuItems, withLayout } from '../components/layout'
+import { Segment, Container, Header } from 'semantic-ui-react'
 
 interface IndexPageProps {
   location: {
     pathname: string
   }
 }
-
-export default class Home extends React.Component<IndexPageProps> {
+class Home extends React.Component<IndexPageProps> {
   particleJSON = {
     particles: {
       number: {
@@ -52,20 +44,8 @@ export default class Home extends React.Component<IndexPageProps> {
     retina_detect: true,
   }
 
-  private typedInstance: Typed
-
   componentDidMount() {
     window.particlesJS('home-particles', this.particleJSON)
-    this.typedInstance = new Typed('#sorayama', {
-      strings: ['El Psy Congroo.'],
-      typeSpeed: 150,
-    })
-  }
-
-  componentWillUnmount() {
-    if (this.typedInstance) {
-      this.typedInstance.destroy()
-    }
   }
 
   render() {
@@ -81,10 +61,14 @@ export default class Home extends React.Component<IndexPageProps> {
             inverted
           />
           <Container text style={{ display: 'flex', justifyContent: 'center' }}>
-            <Header id="sorayama" inverted as="h1" />
+            <Header id="sorayama" inverted as="h1">
+              SoraYama's Personal Blog
+            </Header>
           </Container>
         </Segment>
       </div>
     )
   }
 }
+
+export default withLayout(Home)
