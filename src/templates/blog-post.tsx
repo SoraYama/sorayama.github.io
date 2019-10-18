@@ -1,13 +1,12 @@
 import * as React from 'react'
+import { graphql } from 'gatsby'
 import Link from 'gatsby-link'
 import { get } from 'lodash'
 import {
   Header,
   Container,
   Segment,
-  Icon,
   Label,
-  Button,
   Grid,
   Card,
   Image,
@@ -22,7 +21,7 @@ import {
 } from '../graphql-types'
 import BlogTitle from '../components/BlogTitle'
 import { DiscussionEmbed, DisqusConfig } from 'disqus-react'
-import { withLayout } from '../components/layout'
+import { withLayout } from '../components/Layout'
 
 interface BlogPostProps {
   data: {
@@ -46,17 +45,13 @@ const BlogPostPage = (props: BlogPostProps) => {
     ? props.data.recents.edges.map(({ node }) => {
         const recentAvatar = node.frontmatter.author.avatar
           .children[0] as ImageSharp
-        const recentCover = get(
-          node,
-          'frontmatter.image.children.0.responsiveResolution',
-          {}
-        )
+        const recentCover = get(node, 'frontmatter.image.children.0.fixed', {})
         const extra = (
           <Comment.Group>
             <Comment>
               <Comment.Avatar
-                src={recentAvatar.responsiveResolution.src}
-                srcSet={recentAvatar.responsiveResolution.srcSet}
+                src={recentAvatar.fixed.src}
+                srcSet={recentAvatar.fixed.srcSet}
               />
               <Comment.Content>
                 <Comment.Author style={{ fontWeight: 400 }}>
@@ -84,9 +79,9 @@ const BlogPostPage = (props: BlogPostProps) => {
       })
     : ''
 
-  const cover = get(frontmatter, 'image.children.0.responsiveResolution', {})
+  const cover = get(frontmatter, 'image.children.0.fixed', {})
   const disqusConfig: DisqusConfig = {
-    url: window.location.href,
+    url: `https://sorayama.me/blog/${props.data.post.frontmatter.title}`,
     identifier: props.data.post.id,
     title: props.data.post.frontmatter.title,
   }
@@ -99,8 +94,8 @@ const BlogPostPage = (props: BlogPostProps) => {
             <Item.Image
               size="tiny"
               shape="circular"
-              src={avatar.responsiveResolution.src}
-              srcSet={avatar.responsiveResolution.srcSet}
+              src={avatar.fixed.src}
+              srcSet={avatar.fixed.srcSet}
             />
             <Item.Content>
               <Item.Description>{frontmatter.author.id}</Item.Description>
@@ -169,7 +164,7 @@ export const pageQuery = graphql`
           avatar {
             children {
               ... on ImageSharp {
-                responsiveResolution(width: 80, height: 80, quality: 100) {
+                fixed(width: 80, height: 80, quality: 100) {
                   src
                   srcSet
                 }
@@ -182,7 +177,7 @@ export const pageQuery = graphql`
         image {
           children {
             ... on ImageSharp {
-              responsiveResolution(width: 900, height: 300, quality: 100) {
+              fixed(width: 900, height: 300, quality: 100) {
                 src
                 srcSet
               }
@@ -212,7 +207,7 @@ export const pageQuery = graphql`
             image {
               children {
                 ... on ImageSharp {
-                  responsiveResolution(width: 300, height: 100) {
+                  fixed(width: 300, height: 100) {
                     src
                     srcSet
                   }
@@ -223,7 +218,7 @@ export const pageQuery = graphql`
               avatar {
                 children {
                   ... on ImageSharp {
-                    responsiveResolution(width: 36, height: 36) {
+                    fixed(width: 36, height: 36) {
                       src
                       srcSet
                     }

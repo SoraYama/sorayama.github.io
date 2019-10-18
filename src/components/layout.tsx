@@ -1,7 +1,7 @@
 import Link from 'gatsby-link'
 import * as React from 'react'
-import HeaderMenu from '../components/HeaderMenu/HeaderMenu'
-import SidebarMenu from '../components/SidebarMenu/SidebarMenu'
+import HeaderMenu from './HeaderMenu/HeaderMenu'
+import SidebarMenu from './SidebarMenu/SidebarMenu'
 import { Segment, Icon, Container, Sidebar, Button } from 'semantic-ui-react'
 import '../css/styles.css'
 import '../css/override.css'
@@ -10,7 +10,7 @@ import '../css/semantic.min.css'
 import 'prismjs/themes/prism-okaidia.css'
 import { Provider } from 'react-redux'
 import { store } from '../store'
-import { MenuItem } from '../components/Menu'
+import { MenuItem } from './Menu'
 
 declare global {
   interface Window {

@@ -8,14 +8,14 @@ import { withPrefix } from 'gatsby-link'
 const config = require('../gatsby-config.js')
 
 // Load production style
-let styles: string
-if (process.env.NODE_ENV === `production`) {
-  try {
-    styles = require('!raw-loader!../public/styles.css')
-  } catch (err) {
-    console.log(err)
-  }
-}
+// let styles: string
+// if (process.env.NODE_ENV === `production`) {
+//   try {
+//     styles = require('!raw-loader!../public/styles.css')
+//   } catch (err) {
+//     console.log(err)
+//   }
+// }
 
 interface HtmlProps {
   body: any
@@ -24,16 +24,16 @@ interface HtmlProps {
 }
 
 // Use `module.exports` to be compliante with `webpack-require` import method
-module.exports = (props: HtmlProps) => {
+export default (props: HtmlProps) => {
   const head = Helmet.rewind()
 
-  const css =
-    process.env.NODE_ENV === `production` ? (
-      <style
-        id="gatsby-inlined-css"
-        dangerouslySetInnerHTML={{ __html: styles }}
-      />
-    ) : null
+  // const css =
+  //   process.env.NODE_ENV === `production` ? (
+  //     <style
+  //       id="gatsby-inlined-css"
+  //       dangerouslySetInnerHTML={{ __html: styles }}
+  //     />
+  //   ) : null
 
   const verification =
     config.siteMetadata && config.siteMetadata.googleVerification ? (
@@ -68,7 +68,7 @@ module.exports = (props: HtmlProps) => {
         {head.title.toComponent()}
         {head.meta.toComponent()}
         {head.link.toComponent()}
-        {css}
+        {/* {css} */}
         {verification}
       </head>
       <body>

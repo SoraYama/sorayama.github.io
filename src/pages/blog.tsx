@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Link from 'gatsby-link'
+import { graphql } from 'gatsby'
 import {
   Grid,
   Card,
@@ -13,7 +14,7 @@ import BlogTitle from '../components/BlogTitle'
 import TagsCard from '../components/TagsCard/TagsCard'
 import BlogPagination from '../components/BlogPagination/BlogPagination'
 import { get } from 'lodash'
-import { withLayout } from '../components/layout'
+import { withLayout } from '../components/Layout'
 
 interface BlogProps {
   data: {
@@ -45,18 +46,14 @@ const BlogPage = (props: BlogProps) => {
           excerpt,
         } = node
         const avatar = frontmatter.author.avatar.children[0] as ImageSharp
-        const cover = get(
-          frontmatter,
-          'image.children.0.responsiveResolution',
-          {}
-        )
+        const cover = get(frontmatter, 'image.children.0.fixed', {})
 
         const extra = (
           <Comment.Group>
             <Comment>
               <Comment.Avatar
-                src={avatar.responsiveResolution.src}
-                srcSet={avatar.responsiveResolution.srcSet}
+                src={avatar.fixed.src}
+                srcSet={avatar.fixed.srcSet}
               />
               <Comment.Content>
                 <Comment.Author style={{ fontWeight: 400 }}>
@@ -158,7 +155,7 @@ export const pageQuery = graphql`
             image {
               children {
                 ... on ImageSharp {
-                  responsiveResolution(width: 700, height: 100) {
+                  fixed(width: 700, height: 100) {
                     src
                     srcSet
                   }
@@ -170,7 +167,7 @@ export const pageQuery = graphql`
               avatar {
                 children {
                   ... on ImageSharp {
-                    responsiveResolution(width: 35, height: 35) {
+                    fixed(width: 35, height: 35) {
                       src
                       srcSet
                     }

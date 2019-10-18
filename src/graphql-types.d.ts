@@ -189,7 +189,7 @@ export interface ImageSharpRootQueryTypeArgs {
   original: originalTypeName_3 | null;
   resolutions: resolutionsTypeName_3 | null;
   sizes: sizesTypeName_3 | null;
-  responsiveResolution: responsiveResolutionTypeName_3 | null;
+  fixed: fixedTypeName_3 | null;
   responsiveSizes: responsiveSizesTypeName_3 | null;
   resize: resizeTypeName_3 | null;
 }
@@ -1844,7 +1844,7 @@ export interface ImageSharp extends Node {
   original: ImageSharpOriginal | null;
   resolutions: ImageSharpResolutions | null;
   sizes: ImageSharpSizes | null;
-  responsiveResolution: ImageSharpResponsiveResolution | null;
+  fixed: ImageSharpfixed | null;
   responsiveSizes: ImageSharpResponsiveSizes | null;
   resize: ImageSharpResize | null;
 }
@@ -1875,7 +1875,7 @@ export interface SizesImageSharpArgs {
   rotate: number | null;
 }
 
-export interface ResponsiveResolutionImageSharpArgs {
+export interface fixedImageSharpArgs {
   width: number | null;
   height: number | null;
   jpegProgressive: boolean | null;
@@ -1975,7 +1975,7 @@ export interface ImageSharpSizes {
   originalName: string | null;
 }
 
-export interface ImageSharpResponsiveResolution {
+export interface ImageSharpfixed {
   base64: string | null;
   aspectRatio: number | null;
   width: number | null;
@@ -2113,7 +2113,7 @@ export interface imageSharpConnectionSort {
   order: imageSharpConnectionSortOrderValues | null;
 }
 
-export type ImageSharpConnectionSortByFieldsEnum = "id" | "children" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner" | "original___width" | "original___height" | "original___src" | "resolutions___base64" | "resolutions___tracedSVG" | "resolutions___aspectRatio" | "resolutions___width" | "resolutions___height" | "resolutions___src" | "resolutions___srcSet" | "resolutions___srcWebp" | "resolutions___srcSetWebp" | "resolutions___originalName" | "sizes___base64" | "sizes___tracedSVG" | "sizes___aspectRatio" | "sizes___src" | "sizes___srcSet" | "sizes___srcWebp" | "sizes___srcSetWebp" | "sizes___sizes" | "sizes___originalImg" | "sizes___originalName" | "responsiveResolution___base64" | "responsiveResolution___aspectRatio" | "responsiveResolution___width" | "responsiveResolution___height" | "responsiveResolution___src" | "responsiveResolution___srcSet" | "responsiveResolution___originalName" | "responsiveSizes___base64" | "responsiveSizes___aspectRatio" | "responsiveSizes___src" | "responsiveSizes___srcSet" | "responsiveSizes___sizes" | "responsiveSizes___originalImg" | "responsiveSizes___originalName" | "resize___src" | "resize___tracedSVG" | "resize___width" | "resize___height" | "resize___aspectRatio" | "resize___originalName";
+export type ImageSharpConnectionSortByFieldsEnum = "id" | "children" | "parent" | "internal___contentDigest" | "internal___type" | "internal___owner" | "original___width" | "original___height" | "original___src" | "resolutions___base64" | "resolutions___tracedSVG" | "resolutions___aspectRatio" | "resolutions___width" | "resolutions___height" | "resolutions___src" | "resolutions___srcSet" | "resolutions___srcWebp" | "resolutions___srcSetWebp" | "resolutions___originalName" | "sizes___base64" | "sizes___tracedSVG" | "sizes___aspectRatio" | "sizes___src" | "sizes___srcSet" | "sizes___srcWebp" | "sizes___srcSetWebp" | "sizes___sizes" | "sizes___originalImg" | "sizes___originalName" | "fixed___base64" | "fixed___aspectRatio" | "fixed___width" | "fixed___height" | "fixed___src" | "fixed___srcSet" | "fixed___originalName" | "responsiveSizes___base64" | "responsiveSizes___aspectRatio" | "responsiveSizes___src" | "responsiveSizes___srcSet" | "responsiveSizes___sizes" | "responsiveSizes___originalImg" | "responsiveSizes___originalName" | "resize___src" | "resize___tracedSVG" | "resize___width" | "resize___height" | "resize___aspectRatio" | "resize___originalName";
 
 export type imageSharpConnectionSortOrderValues = "ASC" | "DESC";
 
@@ -2123,7 +2123,7 @@ export interface filterImageSharp {
   original: originalTypeName_4 | null;
   resolutions: resolutionsTypeName_4 | null;
   sizes: sizesTypeName_4 | null;
-  responsiveResolution: responsiveResolutionTypeName_4 | null;
+  fixed: fixedTypeName_4 | null;
   responsiveSizes: responsiveSizesTypeName_4 | null;
   resize: resizeTypeName_4 | null;
 }
@@ -2343,53 +2343,53 @@ export interface sizesOriginalNameQueryString_4 {
   glob: string | null;
 }
 
-export interface responsiveResolutionTypeName_4 {
-  base64: responsiveResolutionBase64QueryString_4 | null;
-  aspectRatio: responsiveResolutionAspectRatioQueryFloat_4 | null;
-  width: responsiveResolutionWidthQueryFloat_4 | null;
-  height: responsiveResolutionHeightQueryFloat_4 | null;
-  src: responsiveResolutionSrcQueryString_4 | null;
-  srcSet: responsiveResolutionSrcSetQueryString_4 | null;
-  originalName: responsiveResolutionOriginalNameQueryString_4 | null;
+export interface fixedTypeName_4 {
+  base64: fixedBase64QueryString_4 | null;
+  aspectRatio: fixedAspectRatioQueryFloat_4 | null;
+  width: fixedWidthQueryFloat_4 | null;
+  height: fixedHeightQueryFloat_4 | null;
+  src: fixedSrcQueryString_4 | null;
+  srcSet: fixedSrcSetQueryString_4 | null;
+  originalName: fixedOriginalNameQueryString_4 | null;
 }
 
-export interface responsiveResolutionBase64QueryString_4 {
+export interface fixedBase64QueryString_4 {
   eq: string | null;
   ne: string | null;
   regex: string | null;
   glob: string | null;
 }
 
-export interface responsiveResolutionAspectRatioQueryFloat_4 {
+export interface fixedAspectRatioQueryFloat_4 {
   eq: number | null;
   ne: number | null;
 }
 
-export interface responsiveResolutionWidthQueryFloat_4 {
+export interface fixedWidthQueryFloat_4 {
   eq: number | null;
   ne: number | null;
 }
 
-export interface responsiveResolutionHeightQueryFloat_4 {
+export interface fixedHeightQueryFloat_4 {
   eq: number | null;
   ne: number | null;
 }
 
-export interface responsiveResolutionSrcQueryString_4 {
+export interface fixedSrcQueryString_4 {
   eq: string | null;
   ne: string | null;
   regex: string | null;
   glob: string | null;
 }
 
-export interface responsiveResolutionSrcSetQueryString_4 {
+export interface fixedSrcSetQueryString_4 {
   eq: string | null;
   ne: string | null;
   regex: string | null;
   glob: string | null;
 }
 
-export interface responsiveResolutionOriginalNameQueryString_4 {
+export interface fixedOriginalNameQueryString_4 {
   eq: string | null;
   ne: string | null;
   regex: string | null;
@@ -4290,53 +4290,53 @@ export interface sizesOriginalNameQueryString_3 {
   glob: string | null;
 }
 
-export interface responsiveResolutionTypeName_3 {
-  base64: responsiveResolutionBase64QueryString_3 | null;
-  aspectRatio: responsiveResolutionAspectRatioQueryFloat_3 | null;
-  width: responsiveResolutionWidthQueryFloat_3 | null;
-  height: responsiveResolutionHeightQueryFloat_3 | null;
-  src: responsiveResolutionSrcQueryString_3 | null;
-  srcSet: responsiveResolutionSrcSetQueryString_3 | null;
-  originalName: responsiveResolutionOriginalNameQueryString_3 | null;
+export interface fixedTypeName_3 {
+  base64: fixedBase64QueryString_3 | null;
+  aspectRatio: fixedAspectRatioQueryFloat_3 | null;
+  width: fixedWidthQueryFloat_3 | null;
+  height: fixedHeightQueryFloat_3 | null;
+  src: fixedSrcQueryString_3 | null;
+  srcSet: fixedSrcSetQueryString_3 | null;
+  originalName: fixedOriginalNameQueryString_3 | null;
 }
 
-export interface responsiveResolutionBase64QueryString_3 {
+export interface fixedBase64QueryString_3 {
   eq: string | null;
   ne: string | null;
   regex: string | null;
   glob: string | null;
 }
 
-export interface responsiveResolutionAspectRatioQueryFloat_3 {
+export interface fixedAspectRatioQueryFloat_3 {
   eq: number | null;
   ne: number | null;
 }
 
-export interface responsiveResolutionWidthQueryFloat_3 {
+export interface fixedWidthQueryFloat_3 {
   eq: number | null;
   ne: number | null;
 }
 
-export interface responsiveResolutionHeightQueryFloat_3 {
+export interface fixedHeightQueryFloat_3 {
   eq: number | null;
   ne: number | null;
 }
 
-export interface responsiveResolutionSrcQueryString_3 {
+export interface fixedSrcQueryString_3 {
   eq: string | null;
   ne: string | null;
   regex: string | null;
   glob: string | null;
 }
 
-export interface responsiveResolutionSrcSetQueryString_3 {
+export interface fixedSrcSetQueryString_3 {
   eq: string | null;
   ne: string | null;
   regex: string | null;
   glob: string | null;
 }
 
-export interface responsiveResolutionOriginalNameQueryString_3 {
+export interface fixedOriginalNameQueryString_3 {
   eq: string | null;
   ne: string | null;
   regex: string | null;

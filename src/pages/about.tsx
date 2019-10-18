@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Header, Container, Segment, Icon } from 'semantic-ui-react'
-import { withLayout } from '../components/layout'
+import { withLayout } from '../components/Layout'
 
 const AboutPage = () => {
   const aboutMe = (

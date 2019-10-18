@@ -2,7 +2,7 @@ import * as React from 'react'
 import Typed from 'typed.js'
 import Link from 'gatsby-link'
 import HeaderMenu from '../components/HeaderMenu/HeaderMenu'
-import { menuItems, withLayout } from '../components/layout'
+import { menuItems, withLayout } from '../components/Layout'
 import { Segment, Container, Header } from 'semantic-ui-react'
 
 interface IndexPageProps {
