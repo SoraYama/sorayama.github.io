@@ -1,10 +1,10 @@
 module.exports = {
   siteMetadata: {
     title: `SoraYama - dinglingdong`,
-    disqus: `sorayama`
+    disqus: `sorayama`,
   },
   mapping: {
-    'MarkdownRemark.frontmatter.author': `AuthorJson`
+    'MarkdownRemark.frontmatter.author': `AuthorJson`,
   },
   plugins: [
     // Expose `/data` to graphQL layer
@@ -12,8 +12,8 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `data`,
-        path: `${__dirname}/data`
-      }
+        path: `${__dirname}/data`,
+      },
     },
 
     {
@@ -25,8 +25,8 @@ module.exports = {
         // Setting this parameter is optional
         anonymize: true,
         // Setting this parameter is also optional
-        respectDNT: true
-      }
+        respectDNT: true,
+      },
     },
 
     // Parse all markdown files (each plugin add/parse some data into graphQL layer)
@@ -38,14 +38,14 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 690,
-              backgroundColor: `#f7f0eb`
-            }
+              backgroundColor: `#f7f0eb`,
+            },
           },
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-autolink-headers`
-        ]
-      }
+          `gatsby-remark-autolink-headers`,
+        ],
+      },
     },
 
     // Parse all images files
@@ -65,14 +65,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby website`,
-        short_name: `Gatsby website`,
+        name: `SoraYama's personal blog`,
+        short_name: `SoraYama`,
         start_url: `/`,
         background_color: `#f7f7f7`,
         theme_color: `#191919`,
         icon: `src/images/icon.png`,
-        display: `minimal-ui`
-      }
+        display: `standalone`,
+      },
     },
     /* eslint-enable camelcase */
 
@@ -80,6 +80,6 @@ module.exports = {
     // html file so the site works offline and is otherwise
     // resistant to bad networks. Works with almost any
     // site!
-    `gatsby-plugin-offline`
-  ]
+    `gatsby-plugin-offline`,
+  ],
 }

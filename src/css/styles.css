@@ -17,7 +17,6 @@
 
 #home-particles {
   position: absolute;
-  background: #1b1c1d;
   top: 0;
   left: 0;
   height: 100%;
@@ -174,9 +173,9 @@ pre {
 }
 
 .github-corner {
-  fill: #fff;
+  fill: #48aff0;
   width: 60px;
-  color: #1b1c1d;
+  color: #fff;
   position: absolute;
   top: 0;
   border: 0;
@@ -185,7 +184,7 @@ pre {
 }
 
 .github-corner:hover {
-  color: #1b1c1d;
+  color: #fff;
 }
 
 .github-corner:hover .octo-arm {
