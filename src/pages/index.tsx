@@ -4,6 +4,7 @@ import Link from 'gatsby-link'
 import HeaderMenu from '../components/HeaderMenu/HeaderMenu'
 import { menuItems, withLayout } from '../components/Layout'
 import { Segment, Container, Header } from 'semantic-ui-react'
+import GithubCorner from '../components/GithubCorner'
 
 interface IndexPageProps {
   location: {
@@ -54,6 +55,7 @@ class Home extends React.Component<IndexPageProps> {
         {/* Master head */}
         <Segment vertical textAlign="center" className="masthead">
           <div id="home-particles" />
+          <GithubCorner />
           <HeaderMenu
             Link={Link}
             pathname={this.props.location.pathname}

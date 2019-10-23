@@ -1,8 +1,12 @@
-body {
-  background-image: url('themes/default/assets/images/bg.png') !important;
-  background-color: #394b59 !important;
+html body {
+  background-image: url('themes/default/assets/images/bg.png');
+  background-color: #202b33;
   background-blend-mode: color-burn;
-  color: #e0e0e0 !important;
+  color: #e0e0e0;
+}
+
+html body.light {
+  background-color: #0a3b5a;
 }
 
 @font-face {

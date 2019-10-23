@@ -68,7 +68,6 @@ export default (props: HtmlProps) => {
         {head.title.toComponent()}
         {head.meta.toComponent()}
         {head.link.toComponent()}
-        {/* {css} */}
         {verification}
       </head>
       <body>

@@ -35,7 +35,7 @@ export const SidebarMenu = ({
       {items.map(item => {
         const active = isActive(item)
         return (
-          <Menu.Item to={item.path} active={active} key={item.path}>
+          <Menu.Item as={Link} to={item.path} active={active} key={item.path}>
             <Icon name={item.icon} />
             {item.name}
           </Menu.Item>
