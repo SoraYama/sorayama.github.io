@@ -22,34 +22,34 @@ describe('gatsby-node', () => {
                 {
                   node: {
                     fields: {
-                      slug: '/blog/2017-04-18--welcoming/'
-                    }
-                  }
+                      slug: '/blog/2017-04-18--welcoming/',
+                    },
+                  },
                 },
                 {
                   node: {
                     fields: {
-                      slug: '/blog/2017-05-02--article-2/'
-                    }
-                  }
+                      slug: '/blog/2017-05-02--article-2/',
+                    },
+                  },
                 },
                 {
                   node: {
                     fields: {
-                      slug: '/blog/2017-05-02--article-1/'
-                    }
-                  }
+                      slug: '/blog/2017-05-02--article-1/',
+                    },
+                  },
                 },
                 {
                   node: {
                     fields: {
-                      slug: '/docs/dont-take-me/'
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      slug: '/docs/dont-take-me/',
+                    },
+                  },
+                },
+              ],
+            },
+          },
         })
       )
 
@@ -59,11 +59,9 @@ describe('gatsby-node', () => {
     })
 
     it('should throw an error on graphql error', () => {
-      graphql.mockReturnValueOnce(
-        Promise.resolve({errors: 'something wrong!'})
-      )
+      graphql.mockReturnValueOnce(Promise.resolve({errors: 'something wrong!'}))
 
-      expect(createPages({graphql, actions})).toThrow()
+      expect(createPages({graphql, actions})).rejects.toThrow()
     })
 
     it('should create tags pages', () => {
@@ -75,46 +73,46 @@ describe('gatsby-node', () => {
                 {
                   node: {
                     fields: {
-                      slug: '/blog/2017-04-18--welcoming/'
+                      slug: '/blog/2017-04-18--welcoming/',
                     },
                     frontmatter: {
-                      tags: ['starter', 'gatsby']
-                    }
-                  }
+                      tags: ['starter', 'gatsby'],
+                    },
+                  },
                 },
                 {
                   node: {
                     fields: {
-                      slug: '/blog/2017-05-02--article-2/'
+                      slug: '/blog/2017-05-02--article-2/',
                     },
                     frontmatter: {
-                      tags: ['test']
-                    }
-                  }
+                      tags: ['test'],
+                    },
+                  },
                 },
                 {
                   node: {
                     fields: {
-                      slug: '/blog/2017-05-02--article-1/'
+                      slug: '/blog/2017-05-02--article-1/',
                     },
                     frontmatter: {
-                      tags: ['test']
-                    }
-                  }
+                      tags: ['test'],
+                    },
+                  },
                 },
                 {
                   node: {
                     fields: {
-                      slug: '/blog/2017-05-02--article-0/'
+                      slug: '/blog/2017-05-02--article-0/',
                     },
                     frontmatter: {
-                      tags: null
-                    }
-                  }
-                }
-              ]
-            }
-          }
+                      tags: null,
+                    },
+                  },
+                },
+              ],
+            },
+          },
         })
       )
 
@@ -125,12 +123,12 @@ describe('gatsby-node', () => {
 
     describe('pagination', () => {
       const generateData = n => {
-        const edges = [...Array(n)].map((val, i) => ({
+        const edges = [...new Array(n)].map((val, i) => ({
           node: {
             fields: {
-              slug: `/blog/2017-04-18--article-${i + 1}/`
-            }
-          }
+              slug: `/blog/2017-04-18--article-${i + 1}/`,
+            },
+          },
         }))
 
         return {data: {posts: {edges}}}
@@ -178,13 +176,13 @@ describe('gatsby-node', () => {
 
     it('should create slugs for MarkdownRemark file', () => {
       getNode.mockReturnValue({
-        relativePath: 'blog/2017-04-18--welcoming/index.md'
+        relativePath: 'blog/2017-04-18--welcoming/index.md',
       })
       const node = {
         internal: {
-          type: 'MarkdownRemark'
+          type: 'MarkdownRemark',
         },
-        parent: 'parent'
+        parent: 'parent',
       }
       onCreateNode({node, actions, getNode})
 
@@ -193,13 +191,13 @@ describe('gatsby-node', () => {
 
     it('should do nothing on unknown type', () => {
       getNode.mockReturnValue({
-        relativePath: 'blog/2017-04-18--welcoming/index.md'
+        relativePath: 'blog/2017-04-18--welcoming/index.md',
       })
       const node = {
         internal: {
-          type: 'unknown'
+          type: 'unknown',
         },
-        parent: 'parent'
+        parent: 'parent',
       }
       onCreateNode({node, actions, getNode})
 

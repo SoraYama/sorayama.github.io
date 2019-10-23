@@ -1,7 +1,7 @@
 ---
 title: Misc
 createdDate: '2018-07-29'
-updatedDate: '2019-07-30'
+updatedDate: '2019-10-23'
 author: SoraYama - 空山
 tags:
   - 2018-07
@@ -39,51 +39,55 @@ curl wttr.in /~<PLACE>
 
 ### 搭建私人 git 仓库
 
-> 假设已经有sudo权限的用户账号，下面，正式开始安装。
+> 假设已经有 sudo 权限的用户账号，下面，正式开始安装。
 
-#### 第一步，安装git：
+#### 第一步，安装 git
 
 ```bash
 sudo apt-get install git
 ```
 
-#### 第二步，创建一个git用户，用来运行git服务：
+#### 第二步，创建一个 git 用户，用来运行 git 服务
 
 ```bash
 sudo adduser git
 ```
 
-#### 第三步，创建证书登录：
+#### 第三步，创建证书登录
 
 收集所有需要登录的用户的公钥，就是他们自己的 `id_rsa.pub` 文件，把所有公钥导入到 `/home/git/.ssh/authorized_keys` 文件里，一行一个。
 
-#### 第四步，初始化Git仓库：
+#### 第四步，初始化 Git 仓库
 
-先选定一个目录作为Git仓库，假定是 `/srv/sample.git`，在 `/srv` 目录下输入命令：
+先选定一个目录作为 Git 仓库，假定是 `/srv/sample.git`，在 `/srv` 目录下输入命令：
 
 ```bash
 sudo git init --bare sample.git
 ```
 
-Git就会创建一个裸仓库，裸仓库没有工作区，因为服务器上的Git仓库纯粹是为了共享，所以不让用户直接登录到服务器上去改工作区，并且服务器上的Git仓库通常都以.git结尾。然后，把owner改为git：
+Git 就会创建一个裸仓库，裸仓库没有工作区，因为服务器上的 Git 仓库纯粹是为了共享，所以不让用户直接登录到服务器上去改工作区，并且服务器上的 Git 仓库通常都以.git 结尾。然后，把 owner 改为 git：
 
 ```bash
 sudo chown -R git:git sample.git
 ```
 
-#### 第五步，禁用shell登录：
+#### 第五步，禁用 shell 登录
 
 出于安全考虑，第二步创建的 git 用户不允许登录 shell ，这可以通过编辑 `/etc/passwd` 文件完成。找到类似下面的一行：
 
-    git:x:1001:1001:,,,:/home/git:/bin/bash
+```bash
+git:x:1001:1001:,,,:/home/git:/bin/bash
+```
 
 改为：
 
-    git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
+```bash
+git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
+```
 
 这样，git 用户可以正常通过 ssh 使用 git，但无法登录 shell，因为我们为 git 用户指定的 git-shell 每次一登录就自动退出。
 
-#### 第六步，克隆远程仓库：
+#### 第六步，克隆远程仓库
 
 现在，可以通过 `git clone` 命令克隆远程仓库了，在各自的电脑上运行：
 
@@ -93,7 +97,7 @@ Cloning into 'sample'...
 warning: You appear to have cloned an empty repository.
 ```
 
-### git 大小写忽略：
+### git 大小写忽略
 
 被坑过两次，第一次还不知道是怎么回事 = =
 具体来说 git 默认对文件名大小写不敏感，如果只改文件名大小写的话会没有任何可提交的东西，因此需要配置
@@ -101,3 +105,4 @@ warning: You appear to have cloned an empty repository.
 ```bash
 git config core.ignorecase false
 ```
+

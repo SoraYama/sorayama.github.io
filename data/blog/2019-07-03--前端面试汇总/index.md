@@ -1,7 +1,7 @@
 ---
 title: 前端面试汇总(持续更新)
-createdDate: "2019-07-03"
-updatedDate: "2019-07-28"
+createdDate: '2019-07-03'
+updatedDate: '2019-07-28'
 author: SoraYama - 空山
 image: fe.jpg
 tags:
@@ -69,16 +69,16 @@ DOCTYPE 标签是一种标准通用标记语言的文档类型声明，它的目
 
 - 浏览器使用流式布局模型 (Flow Based Layout)。
 
-- 浏览器会把HTML解析成DOM，把CSS解析成CSSOM，DOM和CSSOM合并就产生了Render Tree。
-有了RenderTree，我们就知道了所有节点的样式，然后计算他们在页面上的大小和位置，最后把节点绘制到页面上。
+- 浏览器会把 HTML 解析成 DOM，把 CSS 解析成 CSSOM，DOM 和 CSSOM 合并就产生了 Render Tree。
+  有了 RenderTree，我们就知道了所有节点的样式，然后计算他们在页面上的大小和位置，最后把节点绘制到页面上。
 
-- 由于浏览器使用流式布局，对Render Tree的计算通常只需要遍历一次就可以完成，但table及其内部元素除外，他们可能需要多次计算，通常要花3倍于同等元素的时间，这也是为什么要避免使用table布局的原因之一。
+- 由于浏览器使用流式布局，对 Render Tree 的计算通常只需要遍历一次就可以完成，但 table 及其内部元素除外，他们可能需要多次计算，通常要花 3 倍于同等元素的时间，这也是为什么要避免使用 table 布局的原因之一。
 
 **一句话：回流必将引起重绘，重绘不一定会引起回流**
 
 ### 回流 (Reflow)
 
-当Render Tree中部分或全部元素的尺寸、结构、或某些属性发生改变时，浏览器重新渲染部分或全部文档的过程称为回流。
+当 Render Tree 中部分或全部元素的尺寸、结构、或某些属性发生改变时，浏览器重新渲染部分或全部文档的过程称为回流。
 
 会导致回流的操作：
 
@@ -92,9 +92,9 @@ DOCTYPE 标签是一种标准通用标记语言的文档类型声明，它的目
 
 - 元素字体大小变化
 
-- 添加或者删除可见的DOM元素
+- 添加或者删除可见的 DOM 元素
 
-- 激活CSS伪类（例如：`:hover`）
+- 激活 CSS 伪类（例如：`:hover`）
 
 - 查询某些属性或调用某些方法
 
@@ -154,7 +154,7 @@ DOCTYPE 标签是一种标准通用标记语言的文档类型声明，它的目
 
 #### JavaScript
 
-- 避免频繁操作样式，最好一次性重写 style 属性，或者将样式列表定义为 class 并一次性更改class属性。
+- 避免频繁操作样式，最好一次性重写 style 属性，或者将样式列表定义为 class 并一次性更改 class 属性。
 
 - 避免频繁操作 DOM，创建一个 documentFragment，在它上面应用所有 DOM 操作，最后再把它添加到文档中。
 
@@ -170,8 +170,8 @@ DOCTYPE 标签是一种标准通用标记语言的文档类型声明，它的目
 
 ```js
 Function.prototype.myBind = function(obj) {
-  if (typeof this !== "function") {
-    throw new Error("no function");
+  if (typeof this !== 'function') {
+    throw new Error('no function')
   }
   var args = Array.prototype.slice.call(arguments, 1),
     fToBind = this,
@@ -182,15 +182,15 @@ Function.prototype.myBind = function(obj) {
         // 判断是否是 new 操作符创建的对象
         this instanceof fNOP ? this : obj,
         args.concat(Array.prototype.slice.call(arguments))
-      );
-    };
+      )
+    }
 
   if (this.prototype) {
-    fNOP.prototype = this.prototype;
+    fNOP.prototype = this.prototype
   }
-  fBound.prototype = new fNOP();
-  return fBound;
-};
+  fBound.prototype = new fNOP()
+  return fBound
+}
 ```
 
 ### 柯里化 add 函数
@@ -251,18 +251,18 @@ Web UI 中 DOM 节点跨层级的移动操作特别少，可以忽略不计
 
 ```js
 function updateChildren(nextNestedChildrenElements, transaction, context) {
-  updateDepth++;
-  var errorThrown = true;
+  updateDepth++
+  var errorThrown = true
   try {
-    this._updateChildren(nextNestedChildrenElements, transaction, context);
-    errorThrown = false;
+    this._updateChildren(nextNestedChildrenElements, transaction, context)
+    errorThrown = false
   } finally {
-    updateDepth--;
+    updateDepth--
     if (!updateDepth) {
       if (errorThrown) {
-        clearQueue();
+        clearQueue()
       } else {
-        processQueue();
+        processQueue()
       }
     }
   }
@@ -312,8 +312,8 @@ function enqueueInsertMarkup(parentInst, markup, toIndex) {
     markupIndex: markupQueue.push(markup) - 1,
     content: null,
     fromIndex: null,
-    toIndex: toIndex
-  });
+    toIndex: toIndex,
+  })
 }
 
 function enqueueMove(parentInst, fromIndex, toIndex) {
@@ -324,8 +324,8 @@ function enqueueMove(parentInst, fromIndex, toIndex) {
     markupIndex: null,
     content: null,
     fromIndex: fromIndex,
-    toIndex: toIndex
-  });
+    toIndex: toIndex,
+  })
 }
 
 function enqueueRemove(parentInst, fromIndex) {
@@ -336,8 +336,8 @@ function enqueueRemove(parentInst, fromIndex) {
     markupIndex: null,
     content: null,
     fromIndex: fromIndex,
-    toIndex: null
-  });
+    toIndex: null,
+  })
 }
 ```
 
