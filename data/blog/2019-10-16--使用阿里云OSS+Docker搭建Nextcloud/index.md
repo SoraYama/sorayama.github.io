@@ -131,10 +131,11 @@ cd compose && mkdir nextcloud && cd nextcloud
 
 -   `db.env`
 
-
-    MYSQL_PASSWORD=YOUR_PASSWORD
-    MYSQL_DATABASE=nextcloud
-    MYSQL_USER=nextcloud
+```env
+MYSQL_PASSWORD=YOUR_PASSWORD
+MYSQL_DATABASE=nextcloud
+MYSQL_USER=nextcloud
+```
 
 -   `docker-compose.yml`
 

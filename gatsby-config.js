@@ -1,7 +1,6 @@
 module.exports = {
   siteMetadata: {
     title: `SoraYama - dinglingdong`,
-    googleVerification: `abcdefz`,
     disqus: `sorayama`
   },
   mapping: {
@@ -20,7 +19,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: 'YOUR_GOOGLE_ANALYTICS_TRACKING_ID',
+        trackingId: 'UA-149867966-1',
         // Puts tracking script in the head instead of the body
         head: false,
         // Setting this parameter is optional
@@ -34,13 +33,14 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        plugins: [{
-          resolve: `gatsby-remark-images`,
-          options: {
-            maxWidth: 690,
-            backgroundColor: `#f7f0eb`
-          }
-        },
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 690,
+              backgroundColor: `#f7f0eb`
+            }
+          },
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-autolink-headers`

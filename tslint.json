@@ -4,7 +4,11 @@
         "tslint:recommended",
         "tslint-config-prettier"
     ],
-    "jsRules": {},
+    "jsRules": {
+        "object-literal-sort-keys": [
+            false
+        ]
+    },
     "rules": {
         "prettier": true,
         "interface-name": [true, "never-prefix"],

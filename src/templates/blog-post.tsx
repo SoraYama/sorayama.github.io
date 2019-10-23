@@ -68,7 +68,7 @@ const BlogPostPage = (props: BlogPostProps) => {
         return (
           <div key={node.fields.slug} style={{ paddingBottom: '1em' }}>
             <Card
-              as={Link}
+              // as={Link}
               to={node.fields.slug}
               image={recentCover}
               header={node.frontmatter.title}
