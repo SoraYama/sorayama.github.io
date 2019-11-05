@@ -89,13 +89,15 @@ sudo apt-get install supervisor
 
 编辑 `/etc/supervisor/supervisord.conf` (也可以单独写一个加到 `conf.d`)
 
-    [program:ossfs]
-    command=bash /YOUR/PATH/TO/SCRIPT/start_ossfs.sh
-    logfile=/var/log/ossfs.log
-    log_stdout=true
-    log_stderr=true
-    logfile_maxbytes=1MB
-    logfile_backups=10
+```conf
+[program:ossfs]
+command=bash /YOUR/PATH/TO/SCRIPT/start_ossfs.sh
+logfile=/var/log/ossfs.log
+log_stdout=true
+log_stderr=true
+logfile_maxbytes=1MB
+logfile_backups=10
+```
 
 5.  运行
 
@@ -115,6 +117,130 @@ sudo df -h # 应该能看到 ossfs 正确挂载
 
 注意如果 `ossfs` 没有启动需要杀掉 `supervisor` 进程重新启动
 
+## https
+
+### 证书
+
+如果已经有证书的可以略过, 此处是用 `letsencrypt` 来生成证书
+
+### 开始
+
+下面的步骤分为两种, 第一种是来自官网教程, 用 `nginx` 做容器直接跑一个 `nextcloud`, 并且内置了 `letsencrypt` 套件, **听起来**十分方便. 第二种是我自己用的比较一般的采用机器上跑 `nginx` 做反代的方式.
+
+这里因为自己使用的是第二种, 先说第二种
+
+### 下载 Nginx 和 `Certbot`
+
+> [Certbot 官网](https://certbot.eff.org)
+
+```bash
+sudo apt install nginx
+```
+
+[安装 `Certbot`](https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx)
+
+```bash
+sudo apt-get update
+sudo apt-get install software-properties-common
+sudo add-apt-repository universe
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+
+sudo apt-get install certbot python-certbot-nginx
+```
+
+### 编辑 conf
+
+```bash
+sudo vim /etc/nginx/sites-available/nextcloud.YOUR_DOMAIN.com.conf
+```
+
+```nginx
+server {
+    listen 80;
+    listen [::]:80 ipv6only=on;
+
+    server_name nextcloud.YOUR_DOMAIN.com;
+    root /var/www/YOUR_DOMAIN.com;
+
+    index index.html;
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+```
+
+编辑好以后可以重启下 `nginx`
+
+```bash
+sudo ln -s /etc/nginx/sites-available/nextcloud.YOUR_DOMAIN.com.conf /etc/nginx/sites-enabled/nextcloud.YOUR_DOMAIN.com.conf
+sudo nginx -t # 测试配置
+sudo systemctl stop nginx
+sudo systemctl start nginx
+sudo systemctl status nginx # 应该是 running 状态
+```
+
+### 配置证书
+
+这一步用 `Certbot` 会比较简单, 命令如下
+
+```bash
+sudo certbot --rsa-key-size 4096 --nginx
+```
+
+配置好以后可以看下配置文件, 这里贴下自用的:
+
+```nginx
+server {
+    server_name nextcloud.YOUR_DOMAIN.com;
+    root /var/www/YOUR_DOMAIN.com;
+
+    index index.html;
+    location / {
+        proxy_pass http://localhost:8080/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload";
+        client_max_body_size 0;
+
+        access_log /var/log/nginx/nextcloud.access.log;
+        error_log /var/log/nginx/nextcloud.error.log;
+    }
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/nextcloud.YOUR_DOMAIN.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/nextcloud.YOUR_DOMAIN.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
+    if ($host = nextcloud.YOUR_DOMAIN.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    listen [::]:80 ipv6only=on;
+
+    server_name nextcloud.YOUR_DOMAIN.com;
+    error_page 497  https://$host$uri?$args;
+    return 404; # managed by Certbot
+
+```
+
+以上文件中部分都是 `Certbot` 自动生成
+
+### nextcloud image
+
+说回刚才的第一种方式, 由于没有亲自试过所以不好评价, 总之看说明会比自己配置反代要轻松一些并且可能会少走一些坑, 但与此同时 `nextcloud` 的镜像也得改, 因此以下部分不适用于这个方式. 感兴趣的话可以自己试试
+
+[戳这里获取例子](https://github.com/nextcloud/docker/tree/master/.examples#with-nginx-proxy)
+
 ### nextcloud
 
 由于这里是采用 `Docker` 进行容器化部署, 就直接贴配置和文件了, `Docker` 的安装和使用不在此赘述. 另外 `Nginx` 反代和 `SSL` 的配置单独放在一起, 有时间稍后补上
@@ -129,7 +255,7 @@ cd compose && mkdir nextcloud && cd nextcloud
 
 2.  依次添加以下文件
 
--   `db.env`
+- `db.env`
 
 ```env
 MYSQL_PASSWORD=YOUR_PASSWORD
@@ -137,7 +263,7 @@ MYSQL_DATABASE=nextcloud
 MYSQL_USER=nextcloud
 ```
 
--   `docker-compose.yml`
+- `docker-compose.yml`
 
 ```yml
 version: '3'
@@ -169,6 +295,10 @@ services:
       - /tmp/ossfs:/var/www/html/data
     environment:
       - MYSQL_HOST=db
+      - NEXTCLOUD_ADMIN_UESR=YOUR_ADMIN
+      - NEXTCLOUD_ADMIN_PASSWORD=YOUR_PASSWORD
+      - NEXTCLOUD_TRUSTED_DOMAINS=nextcloud.YOUR_DOMAIN.com # 注意这里可以用空格分开添加多个可信域名
+      - NEXTCLOUD_OVERWRITEPROTOCOL=https
     env_file:
       - db.env
     depends_on:
@@ -192,7 +322,7 @@ volumes:
   nextcloud:
 ```
 
--   `Makefile`
+- `Makefile`
 
 ```Makefile
 down:
@@ -204,7 +334,7 @@ up:
 start: down up
 ```
 
--   `./app/Dockerfile`
+- `./app/Dockerfile`
 
 ```Dockerfile
 FROM nextcloud:apache
@@ -212,7 +342,7 @@ FROM nextcloud:apache
 COPY redis.config.php /usr/src/nextcloud/config/redis.config.php
 ```
 
--   `./app/redis.config.php`
+- `./app/redis.config.php`
 
 ```php
 <?php
@@ -225,7 +355,7 @@ $CONFIG = array (
 );
 ```
 
--   `custom_app`
+- `custom_app`
 
 ```bash
 mkdir custom_app
@@ -246,17 +376,27 @@ make start
 
 ![login](./login.jpg)
 
+### 踩坑记
+
+1. 由于阿里云安全组设置里 443 端口没开导致一度怀疑人生
+
+2. 因为我域名备案过很久才下来, 所以是在镜像跑起来之后才配置 https 相关. 在配置好之后一直提示域名不在可信任域名里, 一通搜索发现需要在 `docker-compose` 里加 `NEXTCLOUD_TRUSTED_DOMAINS` 这个环境变量.
+   然而我加上之后 `down` 掉重新 `up` 还是不行. 进到 `container` 里看发现并不起作用. 本来想要把 volume 卸载重新来一遍, 结果大神直接把官方 repo 里加信任域名的那[一段代码](https://github.com/nextcloud/docker/blob/master/17.0/apache/entrypoint.sh#L119-L127)
+   给摘下来运行了下结果 OK 了, 等于写回了挂载的 nextcloud 卷里(顺带一提这个位置在 `/var/lib/docker/volumes/nextcloud_nextcloud`)
+
+3. 后来发现配置的 https 总会在浏览器报错, 因为`nextcloud server`端还是用的 http, 只有将 `overwriteprotocol => https` 写到 `config.php` 里才行. 但还是这一步得初始化做, 所以还是像第二部一样直接写到卷里挂进去就好.
+
 ## 小结
 
--   上传下载速度有明显提升, 理论讲速度和带宽应该差不多一致
--   UI 和功能完整度以及安全性方面比 `owncloud` 有一些提升, 值得一搞
--   发现新的 UI 是拿 `Vue` 写的
--   首次登入输入完管理员账号之后出现连不上数据库的报错虽然比较莫名其妙但是多登入一次就行
--   要注意加载卷的权限, 这里挂载脚本设置权限是一个坑
+- 上传下载速度有明显提升, 理论讲速度和带宽应该差不多一致
+- UI 和功能完整度以及安全性方面比 `owncloud` 有一些提升, 值得一搞
+- 发现新的 UI 是拿 `Vue` 写的
+- 首次登入输入完管理员账号之后出现连不上数据库的报错虽然比较莫名其妙但是多登入一次就行
+- 要注意加载卷的权限, 这里挂载脚本设置权限是一个坑
 
 ## 参考
 
--   [how-to-install-nextcloud-talk-using-docker-on-alibaba-cloud](https://medium.com/@Alibaba_Cloud/how-to-install-nextcloud-talk-using-docker-on-alibaba-cloud-ffc8fb326405)
--   [installing-nextcloud-docker](https://blog.ssdnodes.com/blog/installing-nextcloud-docker/)
--   [understand-docker-uid](https://www.cnblogs.com/woshimrf/p/understand-docker-uid.html?spm=a2c4e.10696291.0.0.ad0a19a4PZkqWV)
--   [谈谈 Docker Volume 之权限管理](https://yq.aliyun.com/articles/53990)
+- [how-to-install-nextcloud-talk-using-docker-on-alibaba-cloud](https://medium.com/@Alibaba_Cloud/how-to-install-nextcloud-talk-using-docker-on-alibaba-cloud-ffc8fb326405)
+- [installing-nextcloud-docker](https://blog.ssdnodes.com/blog/installing-nextcloud-docker/)
+- [understand-docker-uid](https://www.cnblogs.com/woshimrf/p/understand-docker-uid.html?spm=a2c4e.10696291.0.0.ad0a19a4PZkqWV)
+- [谈谈 Docker Volume 之权限管理](https://yq.aliyun.com/articles/53990)
