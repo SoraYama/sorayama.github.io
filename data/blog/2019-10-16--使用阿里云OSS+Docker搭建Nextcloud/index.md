@@ -1,7 +1,7 @@
 ---
 title: 使用阿里云OSS+Docker搭建Nextcloud
 createdDate: '2019-10-16'
-updatedDate: '2019-11-6'
+updatedDate: '2019-11-06'
 author: SoraYama - 空山
 image: nextcloud.jpg
 tags:
