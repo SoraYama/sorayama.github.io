@@ -129,7 +129,7 @@ sudo df -h # 应该能看到 ossfs 正确挂载
 
 这里因为自己使用的是第二种, 先说第二种
 
-### 下载 Nginx 和 `Certbot`
+### 下载 Nginx 和 Certbot
 
 > [Certbot 官网](https://certbot.eff.org)
 
@@ -230,7 +230,7 @@ server {
     server_name nextcloud.YOUR_DOMAIN.com;
     error_page 497  https://$host$uri?$args;
     return 404; # managed by Certbot
-
+}
 ```
 
 以上文件中部分都是 `Certbot` 自动生成
@@ -243,7 +243,7 @@ server {
 
 ### nextcloud
 
-由于这里是采用 `Docker` 进行容器化部署, 就直接贴配置和文件了, `Docker` 的安装和使用不在此赘述. 另外 `Nginx` 反代和 `SSL` 的配置单独放在一起, 有时间稍后补上
+由于这里是采用 `Docker` 进行容器化部署, 就直接贴配置和文件了, `Docker` 的安装和使用不在此赘述.
 
 1.  建立 `Docker` 的目录
 
@@ -384,7 +384,7 @@ make start
    然而我加上之后 `down` 掉重新 `up` 还是不行. 进到 `container` 里看发现并不起作用. 本来想要把 volume 卸载重新来一遍, 结果大神直接把官方 repo 里加信任域名的那[一段代码](https://github.com/nextcloud/docker/blob/master/17.0/apache/entrypoint.sh#L119-L127)
    给摘下来运行了下结果 OK 了, 等于写回了挂载的 nextcloud 卷里(顺带一提这个位置在 `/var/lib/docker/volumes/nextcloud_nextcloud`)
 
-3. 后来发现配置的 https 总会在浏览器报错, 因为`nextcloud server`端还是用的 http, 只有将 `overwriteprotocol => https` 写到 `config.php` 里才行. 但还是这一步得初始化做, 所以还是像第二部一样直接写到卷里挂进去就好.
+3. 后来发现配置的 https 总会在浏览器报错, 因为`nextcloud server`端还是用的 http, 只有将 `overwriteprotocol => https` 写到 `config.php` 里才行. 但还是这一步得初始化做, 所以还是像第二步一样直接写到卷里挂进去就好.
 
 ## 小结
 
