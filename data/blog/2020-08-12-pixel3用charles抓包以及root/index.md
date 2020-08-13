@@ -1,7 +1,7 @@
 ---
 title: Pixel 3 charles 抓包以及 root 记录
 createdDate: '2020-08-12'
-updatedDate: '2019-08-12'
+updatedDate: '2020-08-12'
 author: SoraYama - 空山
 image: pixel3.jpg
 tags:
