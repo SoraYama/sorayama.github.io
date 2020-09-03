@@ -48,7 +48,7 @@
     "gatsby-transformer-json": "latest",
     "gatsby-transformer-remark": "latest",
     "gatsby-transformer-sharp": "latest",
-    "graphql-code-generator": "^0.5.2",
+    "graphql-code-generator": "^0.18.2",
     "gray-matter": "^2.1.1",
     "lodash": "^4.17.4",
     "moment": "^2.22.2",
