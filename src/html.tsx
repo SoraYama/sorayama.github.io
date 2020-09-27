@@ -1,7 +1,6 @@
 /* tslint:disable no-var-requires */
 /* tslint:disable no-console */
 import * as React from 'react'
-import moment from 'moment'
 import Helmet from 'react-helmet'
 import { withPrefix } from 'gatsby-link'
 
@@ -26,12 +25,6 @@ interface HtmlProps {
 // Use `module.exports` to be compliante with `webpack-require` import method
 export default (props: HtmlProps) => {
   const head = Helmet.rewind()
-  const isLight = moment().isBetween(
-    moment().hour(8),
-    moment().hour(20),
-    'hour',
-    '()'
-  )
   // const css =
   //   process.env.NODE_ENV === `production` ? (
   //     <style
@@ -75,7 +68,7 @@ export default (props: HtmlProps) => {
         {head.link.toComponent()}
         {verification}
       </head>
-      <body className={isLight ? 'light' : ''}>
+      <body>
         <div id="___gatsby" dangerouslySetInnerHTML={{ __html: props.body }} />
         {props.postBodyComponents}
       </body>
