@@ -10,7 +10,7 @@ html body::before {
   height: 100%;
   left: 0;
   top: 0;
-  background-color: #0a3b5a;
+  background-color: #202b33;
   mix-blend-mode: color-burn;
   background-blend-mode: color-burn;
   background-image: url('themes/default/assets/images/bg.png');
